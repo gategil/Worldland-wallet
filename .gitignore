@@ -14,7 +14,6 @@
 /docs
 /smart-contract
 /logo_design
-/src/services/secureStorage.js
 
 # misc
 .DS_Store

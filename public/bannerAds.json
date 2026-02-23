@@ -1,0 +1,11 @@
+{
+  "imageSrc": "/images/bannerAds-2.png", 
+  "altText": "월드랜드 재단 공식 웹사이트",
+  "url": "소스코드에 하드코딩되어 있음",
+  "title": "월드랜드 재단 바로가기",
+  "description": "월드랜드 생태계에 대해 자세히 알아보세요",
+  "isActive": true,
+  "trackingId": "banner_001",
+  "startDate": "2024-01-01",
+  "endDate": "2024-12-31"
+}

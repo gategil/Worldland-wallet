@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorldLand Ecosystem - Related Sites</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            padding: 0px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .sites-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .site-item {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .site-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .site-thumbnail {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            background-color: #f0f0f0;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid #ddd;
+        }
+
+        .site-thumbnail img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .site-thumbnail .fallback-icon {
+            font-size: 24px;
+            color: #667eea;
+        }
+
+        .site-main-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .site-item:hover {
+            background-color: #e9e9e9;
+        }
+
+        .site-category {
+            background-color: #667eea;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .site-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .site-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .site-url {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .sites-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>WorldLand Ecosystem</h1>
+            <p>Collection of WorldLand Related Sites</p>
+        </div>
+
+        <div class="sites-list">
+            <a href="https://worldland.foundation" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://worldland.foundation/favicon.ico" alt="WorldLand" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">🏠</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand Official Website</div>
+                    </div>
+                </div>
+                <div class="site-description">The official homepage of the WorldLand project. You can check project overview, roadmap, and team information.</div>
+                <div class="site-url">https://worldland.foundation</div>
+            </a>
+
+            <a href="https://wallet.worldlandcafe.com" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://wallet.worldlandcafe.com/worldland-wallet-favicon.ico" alt="WorldLand Wallet" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">👛</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand Wallet</div>
+                    </div>
+                </div>
+                <div class="site-description">Official WorldLand Wallet application for managing WLC tokens and interacting with the WorldLand blockchain securely.</div>
+                <div class="site-url">https://wallet.worldlandcafe.com/index.html</div>
+            </a>
+
+            <a href="https://worldland.foundation/WorldLand_Whitepaper.pdf" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://worldland.foundation/favicon.ico" alt="WorldLand Whitepaper" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">📋</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand Whitepaper</div>
+                    </div>
+                </div>
+                <div class="site-description">Official WorldLand whitepaper containing detailed technical documentation, tokenomics, and project roadmap.</div>
+                <div class="site-url">https://worldland.foundation/WorldLand_Whitepaper.pdf</div>
+            </a>
+
+            <a href="https://scan.worldland.foundation" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://scan.worldland.foundation/favicon.ico" alt="WorldLand Explorer" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">📊</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand Explorer</div>
+                    </div>
+                </div>
+                <div class="site-description">A block explorer that allows you to check all transactions and block information on the WorldLand blockchain in real time.</div>
+                <div class="site-url">https://scan.worldland.foundation</div>
+            </a>
+
+            <a href="https://github.com/cryptoecc/WorldLand" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://github.com/favicon.ico" alt="WorldLand GitHub" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">💻</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand GitHub Repository</div>
+                    </div>
+                </div>
+                <div class="site-description">Official WorldLand source code repository. Access the blockchain code, smart contracts, and development resources.</div>
+                <div class="site-url">https://github.com/cryptoecc/WorldLand</div>
+            </a>
+
+            <a href="https://docs.worldland.foundation" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://docs.worldland.foundation/favicon.ico" alt="WorldLand Docs" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">📚</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand Developer Documentation</div>
+                    </div>
+                </div>
+                <div class="site-description">Provides API documentation, guides, and tutorials for WorldLand blockchain development.</div>
+                <div class="site-url">https://docs.worldland.foundation</div>
+            </a>
+
+            <a href="https://worldland-official.medium.com/" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://medium.com/favicon.ico" alt="WorldLand Medium" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">✍️</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand Medium Blog</div>
+                    </div>
+                </div>
+                <div class="site-description">Official WorldLand blog on Medium. Read the latest articles, updates, and insights about the WorldLand ecosystem.</div>
+                <div class="site-url">https://worldland-official.medium.com/</div>
+            </a>
+
+            <a href="https://twitter.com/Worldland_space" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://twitter.com/favicon.ico" alt="WorldLand Twitter" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">🐦</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand Twitter</div>
+                    </div>
+                </div>
+                <div class="site-description">Follow WorldLand on Twitter for real-time updates, announcements, and community interactions.</div>
+                <div class="site-url">https://twitter.com/Worldland_space</div>
+            </a>
+
+            <a href="https://www.youtube.com/@Worldland-2023" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://www.youtube.com/favicon.ico" alt="WorldLand YouTube" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">📺</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand YouTube Channel</div>
+                    </div>
+                </div>
+                <div class="site-description">Watch WorldLand videos, tutorials, project updates, and educational content on our official YouTube channel.</div>
+                <div class="site-url">https://www.youtube.com/@Worldland-2023</div>
+            </a>
+
+            <a href="https://t.me/worldlandblockchaintalk" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://telegram.org/favicon.ico" alt="WorldLand Telegram" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">✈️</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand Telegram</div>
+                    </div>
+                </div>
+                <div class="site-description">Join the WorldLand Telegram group for real-time discussions and community support.</div>
+                <div class="site-url">https://t.me/worldlandblockchaintalk</div>
+            </a>
+
+            <a href="https://cafe.naver.com/worldlandblockchain" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://cafe.naver.com/favicon.ico" alt="Naver Cafe" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">☕</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand Cafe Community</div>
+                    </div>
+                </div>
+                <div class="site-description">A space where WorldLand Cafe community members communicate and share the latest news.</div>
+                <div class="site-url">WorldLand Cafe</div>
+            </a>
+
+            <a href="https://discord.com/channels/1138697336856526868/1141963776145506334" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://discord.com/favicon.ico" alt="Discord" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">💬</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand Discord Community</div>
+                    </div>
+                </div>
+                <div class="site-description">A space where WorldLand Discord community members communicate and share the latest news.</div>
+                <div class="site-url">WorldLand Discord</div>
+            </a>
+
+            <a href="https://open.kakao.com/o/gnATXHMg" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://www.kakaocorp.com/favicon.ico" alt="WorldLand KakaoTalk" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">💬</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand KakaoTalk Open Chat</div>
+                    </div>
+                </div>
+                <div class="site-description">Join the WorldLand KakaoTalk open chat room for Korean community discussions and support.</div>
+                <div class="site-url">KakaoTalk Open Chat</div>
+            </a>
+
+            <a href="https://news.worldland.foundation" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://news.worldland.foundation/favicon.ico" alt="WorldLand News" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">📰</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand News</div>
+                    </div>
+                </div>
+                <div class="site-description">Check out the latest news, updates, and partnership announcements for the WorldLand project.</div>
+                <div class="site-url">https://news.worldland.foundation</div>
+            </a>
+
+            <a href="https://academy.worldland.foundation" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://academy.worldland.foundation/favicon.ico" alt="WorldLand Academy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">🎓</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand Academy</div>
+                    </div>
+                </div>
+                <div class="site-description">An educational platform where you can learn about blockchain and the WorldLand ecosystem.</div>
+                <div class="site-url">https://academy.worldland.foundation</div>
+            </a>
+
+            <a href="https://marketplace.worldland.foundation" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://marketplace.worldland.foundation/favicon.ico" alt="WorldLand Marketplace" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">🛒</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand Marketplace</div>
+                    </div>
+                </div>
+                <div class="site-description">A marketplace where you can trade various digital assets within the WorldLand ecosystem.</div>
+                <div class="site-url">https://marketplace.worldland.foundation</div>
+            </a>
+
+            <a href="https://governance.worldland.foundation" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://governance.worldland.foundation/favicon.ico" alt="WorldLand Governance" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">🗳️</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand Governance</div>
+                    </div>
+                </div>
+                <div class="site-description">Participate in WorldLand project governance voting and determine the direction of the project.</div>
+                <div class="site-url">https://governance.worldland.foundation</div>
+            </a>
+
+            <a href="https://dao.worldland.foundation" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://dao.worldland.foundation/favicon.ico" alt="WorldLand DAO" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">🏛️</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand DAO</div>
+                    </div>
+                </div>
+                <div class="site-description">Join the WorldLand Decentralized Autonomous Organization. Participate in community governance, proposal creation, and decision-making processes.</div>
+                <div class="site-url">https://dao.worldland.foundation</div>
+            </a>
+
+            <a href="https://sites.google.com/view/worldlandsp" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://www.google.com/favicon.ico" alt="WorldLand SP" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">📄</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">WorldLand SP</div>
+                    </div>
+                </div>
+                <div class="site-description">WorldLand Special Page - Additional information and resources about the WorldLand ecosystem and community projects.</div>
+                <div class="site-url">https://sites.google.com/view/worldlandsp</div>
+            </a>
+
+            <a href="https://heungno.net/" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://heungno.net/favicon.ico" alt="Heung-no Lee" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">👤</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">Heung-no Lee Personal Website</div>
+                    </div>
+                </div>
+                <div class="site-description">Personal website of Heung-no Lee, founder and key figure in the WorldLand project.</div>
+                <div class="site-url">https://heungno.net/</div>
+            </a>
+
+            <a href="https://libervance.com/" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://libervance.com/favicon.ico" alt="Libervance" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">🔗</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">Libervance</div>
+                    </div>
+                </div>
+                <div class="site-description">Libervance - Related project or partner website connected to the WorldLand ecosystem.</div>
+                <div class="site-url">https://libervance.com/</div>
+            </a>
+
+            <a href="https://www.linkedin.com/in/heung-no-lee-4808b38/" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://www.linkedin.com/favicon.ico" alt="Heung-no Lee LinkedIn" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">💼</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">Heung-no Lee LinkedIn</div>
+                    </div>
+                </div>
+                <div class="site-description">Professional profile of Heung-no Lee on LinkedIn, founder of WorldLand project.</div>
+                <div class="site-url">https://www.linkedin.com/in/heung-no-lee-4808b38/</div>
+            </a>
+
+            <a href="https://www.facebook.com/heungno.lee.5" target="_blank" rel="noopener noreferrer" class="site-item">
+                <div class="site-header">
+                    <div class="site-thumbnail">
+                        <img src="https://www.facebook.com/favicon.ico" alt="Heung-no Lee Facebook" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="fallback-icon" style="display:none;">📘</span>
+                    </div>
+                    <div class="site-main-info">
+                        <div class="site-title">Heung-no Lee Facebook</div>
+                    </div>
+                </div>
+                <div class="site-description">Facebook profile of Heung-no Lee, founder of WorldLand project.</div>
+                <div class="site-url">https://www.facebook.com/heungno.lee.5</div>
+            </a>
+        </div>
+
+        <div class="footer">
+            <p>© 2024 WorldLand Foundation. <a href="https://worldland.foundation" target="_blank" rel="noopener noreferrer">Visit Official Website</a></p>
+        </div>
+    </div>
+</body>
+</html>

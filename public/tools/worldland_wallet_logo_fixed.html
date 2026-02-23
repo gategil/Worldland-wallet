@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorldLand Wallet 로고 생성기</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .logo-preview {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .preview-item {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .preview-item h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        
+        #logoCanvas {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+        }
+        
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        label {
+            font-weight: 600;
+            min-width: 100px;
+        }
+        
+        input[type="color"] {
+            width: 50px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        input[type="number"] {
+            width: 100px;
+            padding: 8px 12px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            text-align: center;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        input[type="range"] {
+            width: 200px;
+        }
+        
+        .preset-buttons {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .preset-buttons h4 {
+            margin-bottom: 15px;
+            color: white;
+        }
+        
+        .preset-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .preset-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-1px);
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .size-info {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .svg-code {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .loading-indicator {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💳 WorldLand Wallet 로고 생성기</h1>
+        <p>카드 안에 WorldLand 로고가 들어간 지갑 로고를 생성합니다</p>
+        
+        <div class="logo-preview">
+            <div class="preview-item">
+                <h3>💳 로고 미리보기</h3>
+                <canvas id="logoCanvas" width="192" height="192"></canvas>
+                <div style="margin-top: 10px; color: #666; font-size: 0.9rem;">
+                    현재 크기: <span id="currentSize">192 x 192</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label>이미지 크기:</label>
+                <input type="number" id="imageSize" value="192" min="16" max="1024" step="1">
+                <span>픽셀 (정사각형)</span>
+            </div>
+            
+            <div class="control-group">
+                <label>배경색:</label>
+                <input type="color" id="bgColor" value="#ffffff">
+                <label>로고색:</label>
+                <input type="color" id="logoColor" value="#df3128">
+            </div>
+            
+            <div class="control-group">
+                <label>카드 크기:</label>
+                <input type="range" id="sizeSlider" min="0.5" max="5.0" step="0.1" value="2.9">
+                <span id="sizeValue">290%</span>
+                <span style="font-size: 0.8rem; color: rgba(255,255,255,0.7);"> (기본 크기 대비)</span>
+            </div>
+            
+            <div class="control-group">
+                <label>투명 배경:</label>
+                <input type="checkbox" id="transparentBg" checked>
+            </div>
+        </div>
+        
+        <div class="preset-buttons">
+            <h4>🎯 빠른 설정</h4>
+            <button class="preset-btn" onclick="setPreset(64)">64x64 (앱 아이콘)</button>
+            <button class="preset-btn" onclick="setPreset(128)">128x128 (웹 아이콘)</button>
+            <button class="preset-btn" onclick="setPreset(192)">192x192 (PWA)</button>
+            <button class="preset-btn" onclick="setPreset(256)">256x256 (고해상도)</button>
+            <button class="preset-btn" onclick="setPreset(512)">512x512 (마케팅)</button>
+            <button class="preset-btn" onclick="setPreset(1024)">1024x1024 (인쇄용)</button>
+        </div>
+        
+        <div class="size-info">
+            <h3>📏 생성될 파일 정보</h3>
+            <p>크기: <span id="fileSizeInfo">192 x 192</span> 픽셀</p>
+            <p>카드 크기: <span id="logoSizeInfo">기본 크기의 140%</span></p>
+            <p>형식: PNG (투명 배경 지원)</p>
+            <p>용도: <span id="usageInfo">PWA 아이콘, 앱 아이콘</span></p>
+        </div>
+        
+        <button class="download-btn" onclick="downloadPNG()">
+            📥 <span id="downloadBtnText">192x192</span> PNG 다운로드
+        </button>
+        
+        <button class="download-btn" onclick="downloadSVG()">
+            📁 SVG 파일 다운로드
+        </button>
+        
+        <button class="download-btn" onclick="downloadICO()" title="16x16, 32x32, 48x48, 64x64, 128x128, 256x256 크기 포함">
+            🌐 Favicon.ico 다운로드
+        </button>
+
+        <div class="loading-indicator" id="loadingIndicator">
+            <p>🔄 ICO 파일 생성 중... 잠시만 기다려주세요.</p>
+        </div>
+        
+        <div class="svg-code">
+            <h4>🔧 생성된 SVG 코드:</h4>
+            <pre id="svgCode"></pre>
+        </div>
+    </div>
+
+    <script>
+        // WorldLand 로고의 빨간색 부분 경로 데이터
+        const logoPath1 = "m49.19,48.51c-.47.27-1.05.19-1.43-.2h-.01c-.38-.4-.45-.99-.18-1.45l12.52-21.32c.27-.46.82-.68,1.34-.54,1.08.3,2.22.47,3.4.47s2.3-.17,3.37-.46c.51-.14,1.06.09,1.33.55l3.97,6.82,4.17-2.37-4-6.86c-.27-.46-.2-1.05.18-1.43,2.43-2.44,3.89-5.86,3.7-9.62-.32-6.44-5.55-11.72-11.99-12.08-7.37-.41-13.47,5.44-13.47,12.72,0,3.49,1.41,6.65,3.69,8.95.38.38.45.97.18,1.43l-12.52,21.32c-.27.46-.82.68-1.34.54-1.08-.3-2.22-.47-3.4-.47s-2.3.17-3.37.46c-.51.14-1.06-.08-1.33-.55l-12.4-21.27c-.27-.47-.2-1.06.18-1.44l.03-.03c.38-.38.97-.46,1.43-.19l23.49,13.4,2.43-4.13h0s-23.54-13.43-23.54-13.43c-.47-.27-.7-.81-.56-1.33.52-1.95.6-4.08.05-6.31C23.79,4.39,19.17.45,13.74.04,5.93-.56-.53,5.89.03,13.69c.4,5.46,4.37,10.11,9.69,11.42,2.25.55,4.41.45,6.38-.09.52-.14,1.07.08,1.34.54l12.41,21.28c.27.46.2,1.05-.18,1.43-2.43,2.44-3.89,5.86-3.7,9.62.32,6.44,5.55,11.72,11.99,12.08,7.37.41,13.47-5.44,13.47-12.72,0-1.12-.15-2.21-.43-3.24-.14-.52.09-1.06.56-1.32l11.18-6.36-4.85-2.76-8.7,4.95Z";
+        
+        const logoPath2 = "m115.88.04c-5.42.42-10.04,4.36-11.35,9.64-.55,2.22-.47,4.35.05,6.3.14.52-.09,1.06-.56,1.33l-37.23,21.18h0s4.85,2.76,4.85,2.76h0s34.75-19.78,34.75-19.78c.46-.26,1.05-.18,1.42.19l.02.02c.38.38.45.97.18,1.44l-12.52,21.32c-.27.46-.82.68-1.34.54-1.08-.3-2.22-.47-3.40-.47s-2.3.17-3.37.46c-.51.14-1.06-.08-1.33-.55l-3.98-6.82-4.17,2.37,4,6.86c.27.47.2,1.06-.18,1.44l-.03.03c-.38.38-.97.46-1.43.19l-23.48-13.41h0s-2.43,4.15-2.43,4.15h0s23.55,13.43,23.55,13.43c.47.27.7.81.56,1.33-.42,1.58-.55,3.28-.3,5.04.88,6.1,6.14,10.79,12.29,10.94,7.18.17,13.05-5.59,13.05-12.73,0-3.49-1.41-6.65-3.69-8.95-.38-.38-.45-.97-.18-1.43l12.52-21.32c.27-.46.82-.69,1.34-.54,1.98.56,4.14.66,6.41.11,5.33-1.3,9.3-5.96,9.7-11.43.56-7.8-5.91-14.25-13.72-13.65Z";
+
+        const canvas = document.getElementById('logoCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        const imageSizeInput = document.getElementById('imageSize');
+        const bgColorInput = document.getElementById('bgColor');
+        const logoColorInput = document.getElementById('logoColor');
+        const sizeSlider = document.getElementById('sizeSlider');
+        const sizeValue = document.getElementById('sizeValue');
+        const transparentBgInput = document.getElementById('transparentBg');
+        const svgCodeElement = document.getElementById('svgCode');
+        const currentSizeElement = document.getElementById('currentSize');
+        const fileSizeInfoElement = document.getElementById('fileSizeInfo');
+        const usageInfoElement = document.getElementById('usageInfo');
+        const downloadBtnTextElement = document.getElementById('downloadBtnText');
+        const logoSizeInfoElement = document.getElementById('logoSizeInfo');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+
+        function updateCanvasSize() {
+            const size = parseInt(imageSizeInput.value) || 192;
+            
+            // 캔버스 크기 업데이트
+            canvas.width = size;
+            canvas.height = size;
+            
+            // 캔버스 스타일 크기는 미리보기용으로 최대 256px로 제한
+            const displaySize = Math.min(size, 256);
+            canvas.style.width = displaySize + 'px';
+            canvas.style.height = displaySize + 'px';
+            
+            // 정보 업데이트
+            currentSizeElement.textContent = `${size} x ${size}`;
+            fileSizeInfoElement.textContent = `${size} x ${size}`;
+            downloadBtnTextElement.textContent = `${size}x${size}`;
+            
+            // 카드 크기 정보 업데이트
+            updateCardSizeInfo();
+            
+            // 용도 정보 업데이트
+            let usageText = '';
+            if (size <= 64) usageText = '앱 아이콘 (소형)';
+            else if (size <= 128) usageText = '앱 아이콘 (중형)';
+            else if (size <= 192) usageText = 'PWA 아이콘, 웹사이트';
+            else if (size <= 256) usageText = '앱 스토어 아이콘';
+            else if (size <= 512) usageText = '고해상도 아이콘, 마케팅';
+            else usageText = '초고해상도 (인쇄용)';
+            
+            usageInfoElement.textContent = usageText;
+            
+            // 로고 다시 그리기
+            drawLogo();
+        }
+
+        function updateCardSizeInfo() {
+            const cardPercent = Math.round(sizeSlider.value * 100);
+            logoSizeInfoElement.textContent = `기본 크기의 ${cardPercent}%`;
+        }
+
+        function setPreset(size) {
+            imageSizeInput.value = size;
+            updateCanvasSize();
+        }
+
+        function updateSizeValue() {
+            const value = Math.round(sizeSlider.value * 100);
+            sizeValue.textContent = value + '%';
+            updateCardSizeInfo();
+        }
+
+        // 통합된 SVG 생성 함수 (PNG와 ICO가 동일한 디자인 사용)
+        function generateSVG(customSize = null) {
+            const logoColor = logoColorInput.value;
+            const cardScale = sizeSlider.value;
+            const canvasSize = customSize || parseInt(imageSizeInput.value) || 192;
+            // 카드 크기에 관계없이 로고는 카드 내부에 적절한 크기로 유지
+            const logoInCardScale = 0.4;
+            
+            return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${canvasSize} ${canvasSize}" width="${canvasSize}" height="${canvasSize}">
+  <defs>
+    <!-- 카드 그라데이션들 -->
+    <linearGradient id="card1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4A90E2"/>
+      <stop offset="100%" style="stop-color:#357ABD"/>
+    </linearGradient>
+    
+    <linearGradient id="card2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E74C3C"/>
+      <stop offset="100%" style="stop-color:#C0392B"/>
+    </linearGradient>
+    
+    <linearGradient id="card3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ECC71"/>
+      <stop offset="100%" style="stop-color:#27AE60"/>
+    </linearGradient>
+    
+    <!-- 카드 하이라이트 -->
+    <linearGradient id="cardHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3"/>
+      <stop offset="30%" style="stop-color:#ffffff;stop-opacity:0.1"/>
+      <stop offset="100%" style="stop-color:transparent"/>
+    </linearGradient>
+    
+    <!-- 그림자 효과 -->
+    <filter id="cardShadow">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+  
+  <!-- 신용카드들 (중앙 정렬) -->
+  <g transform="translate(${canvasSize*0.45}, ${canvasSize/2}) scale(${cardScale * (canvasSize/400*1.1)})">
+    <g transform="translate(-60, -40)">
+      
+      <!-- 카드 바닥 그림자 -->
+      <ellipse cx="60" cy="50" rx="55" ry="8" fill="#000000" opacity="0.15"/>
+      
+      <!-- 카드 1 (가장 뒤, 파란색) -->
+      <g transform="rotate(-6 60 30)" filter="url(#cardShadow)">
+        <rect x="15" y="15" width="90" height="55" rx="8" fill="url(#card1)" stroke="#2C5F8A" stroke-width="1"/>
+        <rect x="15" y="15" width="90" height="18" rx="8" fill="url(#cardHighlight)"/>
+        
+        <!-- 카드 칩 -->
+        <rect x="25" y="35" width="18" height="14" rx="3" fill="#FFD700" stroke="#DAA520" stroke-width="0.5"/>
+        
+        <!-- 카드 안 WorldLand 로고 -->
+        <g transform="translate(55, 15) scale(${logoInCardScale})">
+          <path fill="${logoColor}" d="${logoPath1}"/>
+          <path fill="${logoColor}" d="${logoPath2}"/>
+        </g>
+        
+        <!-- 카드 번호 -->
+        <text x="25" y="58" font-family="Courier" font-size="8" fill="#ffffff" font-weight="bold">**** ****</text>
+        <text x="25" y="66" font-family="Courier" font-size="6" fill="#ffffff">WORLDLAND</text>
+      </g>
+      
+      <!-- 카드 2 (중간, 빨간색) -->
+      <g transform="rotate(0 60 30)" filter="url(#cardShadow)">
+        <rect x="20" y="10" width="90" height="55" rx="8" fill="url(#card2)" stroke="#A93226" stroke-width="1"/>
+        <rect x="20" y="10" width="90" height="18" rx="8" fill="url(#cardHighlight)"/>
+        
+        <!-- 카드 칩 -->
+        <rect x="30" y="30" width="18" height="14" rx="3" fill="#FFD700" stroke="#DAA520" stroke-width="0.5"/>
+        
+        <!-- 카드 안 WorldLand 로고 (메인 카드) -->
+        <g transform="translate(55, 15) scale(${logoInCardScale * 1.0})">
+          <path fill="${logoColor}" d="${logoPath1}"/>
+          <path fill="${logoColor}" d="${logoPath2}"/>
+        </g>
+        
+        <!-- 카드 번호 -->
+        <text x="30" y="53" font-family="Courier" font-size="8" fill="#ffffff" font-weight="bold">**** ****</text>
+        <text x="30" y="61" font-family="Courier" font-size="6" fill="#ffffff">WORLDLAND</text>
+      </g>
+      
+      <!-- 카드 3 (가장 앞, 초록색) -->
+      <g transform="rotate(6 60 30)" filter="url(#cardShadow)">
+        <rect x="25" y="5" width="90" height="55" rx="8" fill="url(#card3)" stroke="#1E8449" stroke-width="1"/>
+        <rect x="25" y="5" width="90" height="18" rx="8" fill="url(#cardHighlight)"/>
+        
+        <!-- 카드 칩 -->
+        <rect x="35" y="25" width="18" height="14" rx="3" fill="#FFD700" stroke="#DAA520" stroke-width="0.5"/>
+        
+        <!-- 카드 안 WorldLand 로고 -->
+        <g transform="translate(55, 15) scale(${logoInCardScale})">
+          <path fill="${logoColor}" d="${logoPath1}"/>
+          <path fill="${logoColor}" d="${logoPath2}"/>
+        </g>
+        
+        <!-- 카드 번호 -->
+        <text x="35" y="48" font-family="Courier" font-size="8" fill="#ffffff" font-weight="bold">**** ****</text>
+        <text x="35" y="56" font-family="Courier" font-size="6" fill="#ffffff">WORLDLAND</text>
+      </g>
+      
+    </g>
+  </g>
+</svg>`;
+        }
+
+        function drawLogo() {
+            const bgColor = bgColorInput.value;
+            const isTransparent = transparentBgInput.checked;
+            const size = parseInt(imageSizeInput.value) || 192;
+            
+            // 캔버스 클리어
+            ctx.clearRect(0, 0, size, size);
+            
+            // 배경 그리기
+            if (!isTransparent) {
+                ctx.fillStyle = bgColor;
+                ctx.fillRect(0, 0, size, size);
+            }
+            
+            // SVG를 이미지로 변환해서 그리기
+            const svgData = generateSVG();
+            const img = new Image();
+            const blob = new Blob([svgData], {type: 'image/svg+xml'});
+            const url = URL.createObjectURL(blob);
+            
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, size, size);
+                URL.revokeObjectURL(url);
+            };
+            
+            img.src = url;
+            
+            // SVG 코드 표시
+            svgCodeElement.textContent = svgData;
+        }
+
+        function downloadPNG() {
+            const size = parseInt(imageSizeInput.value) || 192;
+            const link = document.createElement('a');
+            link.download = `worldland-wallet-logo-${size}x${size}.png`;
+            link.href = canvas.toDataURL();
+            link.click();
+        }
+
+        function downloadSVG() {
+            const size = parseInt(imageSizeInput.value) || 192;
+            const svgData = generateSVG();
+            const blob = new Blob([svgData], {type: 'image/svg+xml'});
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.download = `worldland-wallet-logo-${size}x${size}.svg`;
+            link.href = url;
+            link.click();
+            
+            URL.revokeObjectURL(url);
+        }
+
+        // ICO 파일 생성 함수 (개선된 버전)
+        async function downloadICO() {
+            try {
+                // 로딩 표시
+                loadingIndicator.style.display = 'block';
+                
+                // 다양한 크기의 ICO 생성 (더 많은 크기 포함)
+                const sizes = [16, 32, 48, 64, 128, 256];
+                const icoData = await generateICO(sizes);
+                
+                const blob = new Blob([icoData], {type: 'image/x-icon'});
+                const url = URL.createObjectURL(blob);
+                
+                const link = document.createElement('a');
+                link.download = 'worldland-wallet-favicon.ico';
+                link.href = url;
+                link.click();
+                
+                URL.revokeObjectURL(url);
+                
+                // 로딩 숨기기
+                loadingIndicator.style.display = 'none';
+            } catch (error) {
+                console.error('ICO 생성 실패:', error);
+                loadingIndicator.style.display = 'none';
+                alert('ICO 파일 생성에 실패했습니다. PNG 파일을 대신 사용해주세요.');
+            }
+        }
+
+        // ICO 파일 데이터 생성
+        async function generateICO(sizes) {
+            const images = [];
+            
+            // 각 크기별로 이미지 데이터 생성
+            for (const size of sizes) {
+                const imageData = await generateImageData(size);
+                images.push({
+                    size: size,
+                    data: imageData
+                });
+            }
+            
+            // ICO 헤더 생성
+            const iconDir = new ArrayBuffer(6 + (images.length * 16));
+            const iconDirView = new DataView(iconDir);
+            
+            // ICO 헤더
+            iconDirView.setUint16(0, 0, true);      // Reserved (0)
+            iconDirView.setUint16(2, 1, true);      // Type (1 = ICO)
+            iconDirView.setUint16(4, images.length, true); // Number of images
+            
+            // 각 이미지의 디렉토리 엔트리
+            let dataOffset = 6 + (images.length * 16);
+            
+            for (let i = 0; i < images.length; i++) {
+                const img = images[i];
+                const entryOffset = 6 + (i * 16);
+                
+                iconDirView.setUint8(entryOffset + 0, img.size === 256 ? 0 : img.size); // Width
+                iconDirView.setUint8(entryOffset + 1, img.size === 256 ? 0 : img.size); // Height
+                iconDirView.setUint8(entryOffset + 2, 0);  // Color palette (0 = no palette)
+                iconDirView.setUint8(entryOffset + 3, 0);  // Reserved
+                iconDirView.setUint16(entryOffset + 4, 1, true);  // Color planes
+                iconDirView.setUint16(entryOffset + 6, 32, true); // Bits per pixel
+                iconDirView.setUint32(entryOffset + 8, img.data.byteLength, true); // Image data size
+                iconDirView.setUint32(entryOffset + 12, dataOffset, true); // Offset to image data
+                
+                dataOffset += img.data.byteLength;
+            }
+            
+            // 전체 ICO 파일 데이터 조합
+            const totalSize = iconDir.byteLength + images.reduce((sum, img) => sum + img.data.byteLength, 0);
+            const icoFile = new Uint8Array(totalSize);
+            
+            // 헤더 복사
+            icoFile.set(new Uint8Array(iconDir), 0);
+            
+            // 이미지 데이터 복사
+            let offset = iconDir.byteLength;
+            for (const img of images) {
+                icoFile.set(new Uint8Array(img.data), offset);
+                offset += img.data.byteLength;
+            }
+            
+            return icoFile;
+        }
+
+        // 특정 크기의 이미지 데이터 생성 (PNG 형식) - 통합된 SVG 사용
+        async function generateImageData(size) {
+            return new Promise((resolve, reject) => {
+                // 임시 캔버스 생성
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = size;
+                tempCanvas.height = size;
+                const tempCtx = tempCanvas.getContext('2d');
+                
+                const bgColor = bgColorInput.value;
+                const isTransparent = transparentBgInput.checked;
+                
+                // 배경 그리기
+                if (!isTransparent) {
+                    tempCtx.fillStyle = bgColor;
+                    tempCtx.fillRect(0, 0, size, size);
+                }
+                
+                // 메인 generateSVG 함수를 재사용하여 PNG와 완전히 동일한 디자인 보장
+                const svgData = generateSVG(size);
+                
+                const img = new Image();
+                const blob = new Blob([svgData], {type: 'image/svg+xml'});
+                const url = URL.createObjectURL(blob);
+                
+                img.onload = function() {
+                    tempCtx.drawImage(img, 0, 0, size, size);
+                    URL.revokeObjectURL(url);
+                    
+                    // PNG 데이터로 변환
+                    tempCanvas.toBlob((blob) => {
+                        if (blob) {
+                            const reader = new FileReader();
+                            reader.onload = function() {
+                                resolve(reader.result);
+                            };
+                            reader.onerror = reject;
+                            reader.readAsArrayBuffer(blob);
+                        } else {
+                            reject(new Error('PNG 변환 실패'));
+                        }
+                    }, 'image/png');
+                };
+                
+                img.onerror = reject;
+                img.src = url;
+            });
+        }
+
+        // 이벤트 리스너
+        imageSizeInput.addEventListener('input', updateCanvasSize);
+        imageSizeInput.addEventListener('change', updateCanvasSize);
+        bgColorInput.addEventListener('change', drawLogo);
+        logoColorInput.addEventListener('change', drawLogo);
+        sizeSlider.addEventListener('input', () => {
+            updateSizeValue();
+            drawLogo();
+        });
+        transparentBgInput.addEventListener('change', drawLogo);
+
+        // 초기 렌더링
+        updateSizeValue();
+        updateCanvasSize();
+        setTimeout(drawLogo, 100); // SVG 로딩 시간 확보
+    </script>
+</body>
+</html>

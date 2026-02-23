@@ -1,0 +1,675 @@
+/* src/components/SendTransaction.css - 다중 토큰 지원 스타일 */
+
+.send-transaction { 
+  padding: 24px;
+  animation: fadeIn 0.4s ease-out;
+  overflow-y: scroll;
+}
+
+/* 선택된 자산 정보 */
+.selected-asset-info {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  margin-bottom: 24px;
+  color: white;
+  position: relative;
+  /* overflow-y: scroll; */
+}
+
+.selected-asset-info::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.asset-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.asset-icon {
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+}
+
+.asset-details .asset-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.asset-details .asset-symbol {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.asset-balance {
+  text-align: right;
+  position: relative;
+  z-index: 1;
+}
+
+.balance-label {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-bottom: 4px;
+}
+
+.balance-amount {
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+}
+
+.send-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--gray-100);
+}
+
+.send-header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+.send-form {
+  /* space-y: 24px; */
+  overflow-y: scroll;
+}
+
+/* 주소 입력 그룹 */
+.address-input-group-send {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.address-input-group-send input {
+  flex: 1; 
+  transition: all var(--transition-fast);
+}
+
+.address-input-group-send textarea {
+  flex: 1;
+  transition: all var(--transition-fast);
+  resize: vertical;           /* 세로로만 크기 조절 가능 */
+  max-width: 80%;
+  min-height: 60px;          /* 최소 높이 */
+  max-height: 100px;         /* 최대 높이 */ 
+  line-height: 1.2;          /* 줄 간격 */
+  word-break: break-all;     /* 긴 주소 자동 줄바꿈 */
+  font-family: monospace;    /* 주소가 더 잘 보이도록 */
+  font-size: 1.1rem;
+  padding: 12px 16px;        /* input과 동일한 패딩 */
+}
+
+.address-input-group-send textarea.invalid {
+  border-color: var(--error-color);
+  background: var(--error-bg);
+}
+
+.address-input-group-send input.invalid {
+  border-color: var(--error-color);
+  background: var(--error-bg);
+}
+
+.address-input-group-send .qr-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.address-input-group-send .qr-button:active {
+  transform: translateY(0);
+}
+
+.qr-button {
+  position: absolute; 
+  right: 12px;
+  background: var(--gray-100);
+  border: none;
+  color: var(--gray-600);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.qr-button:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: scale(1.05);
+}
+
+.field-error {
+  color: var(--error-color);
+  font-size: 0.8rem;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 금액 입력 그룹 */
+.amount-input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.amount-input-group input {
+  flex: 1;
+  padding-right: 100px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.amount-input-group .currency {
+  position: absolute;
+  right: 70px;
+  color: var(--gray-500);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.max-button {
+  position: absolute;
+  right: 12px;
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-weight: 600;
+}
+
+.max-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.balance-info {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 가스 가격 옵션 */
+.gas-price-options {
+  display: flex;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+  justify-content: center;
+}
+
+.gas-option {
+  background: white;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 16px 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+  position: relative;
+}
+
+.gas-option:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.gas-option.active {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+}
+
+.gas-option.active::after {
+  content: '✓';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: var(--primary-color);
+  color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.gas-option.custom {
+  position: relative;
+}
+
+.custom-gas-input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  margin-top: 8px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.option-label {
+  font-weight: 600;
+  color: var(--gray-700);
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.option-price {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  margin-bottom: 2px;
+}
+
+.option-time {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+}
+
+/* 수수료 정보 */
+.fee-info {
+  background: linear-gradient(135deg, var(--gray-50) 0%, #f8fafc 100%);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin: 20px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.fee-info::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.03) 0%, transparent 50%);
+}
+
+.fee-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+.fee-row:last-child {
+  margin-bottom: 0;
+}
+
+.fee-row.total {
+  padding-top: 12px;
+  border-top: 2px solid var(--gray-300);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.fee-amount {
+  font-weight: 600;
+  color: var(--gray-800);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.fee-warning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--warning-bg);
+  color: var(--warning-color);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+/* 전송 버튼 */
+.send-button {
+  width: 100%;
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  padding: 18px 24px;
+  border-radius: var(--radius-lg);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all var(--transition-fast);
+  margin-top: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.send-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    transparent 100%);
+  transition: left 0.6s ease;
+}
+
+.send-button:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.send-button:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.send-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* QR 스캐너 모달 */
+.qr-scanner-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.qr-scanner-content {
+  background: white;
+  border-radius: var(--radius-xl);
+  padding: 30px;
+  text-align: center;
+  max-width: 350px;
+  width: 100%;
+  box-shadow: var(--shadow-2xl);
+}
+
+.scanner-placeholder {
+  padding: 50px 30px;
+  border: 3px dashed var(--gray-300);
+  border-radius: var(--radius-lg);
+  margin-bottom: 24px;
+  background: var(--gray-50);
+  color: var(--gray-600);
+}
+
+.scanner-placeholder svg {
+  margin-bottom: 16px;
+  color: var(--primary-color);
+}
+
+.scanner-placeholder p {
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+/* 애니메이션 */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 폼 공통 스타일 */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--gray-700);
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+  background: white;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group input.error {
+  border-color: var(--error-color);
+}
+
+/* 메시지 */
+/* .message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  border-left: 4px solid;
+  animation: slideIn 0.3s ease-out;
+} */
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* .message.error {
+  background: var(--error-bg);
+  color: var(--error-color);
+  border-color: var(--error-color);
+}
+
+.message.success {
+  background: var(--success-bg);
+  color: var(--success-color);
+  border-color: var(--success-color);
+} */
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+  .send-transaction {
+    padding: 20px;
+  }
+  
+  .selected-asset-info {
+    padding: 16px;
+  }
+  
+  .asset-header {
+    margin-bottom: 12px;
+  }
+  
+  .balance-amount {
+    font-size: 1.1rem;
+  }
+  
+  .gas-price-options {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .gas-option {
+    padding: 12px;
+  }
+  
+  .send-button {
+    padding: 16px 20px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .send-transaction {
+    padding: 16px;
+  }
+  
+  .selected-asset-info {
+    padding: 14px;
+  }
+  
+  .asset-header {
+    flex-direction: row;
+    text-align: center;
+    gap: 8px;
+  }
+  
+  .asset-balance {
+    text-align: center;
+  }
+  
+  .amount-input-group input {
+    font-size: 1rem;
+  }
+  
+  .send-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .fee-info {
+    padding: 16px;
+  }
+  
+  .qr-scanner-content {
+    padding: 20px;
+  }
+  
+  .scanner-placeholder {
+    padding: 30px 20px;
+  }
+}
+
+/* 다크모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .selected-asset-info {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  }
+  
+  .fee-info {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  
+  .gas-option {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  
+  .qr-scanner-content {
+    background: #1e293b;
+    color: #e2e8f0;
+  }
+}
+
+/* 접근성 - 모션 감소 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .send-button:hover,
+  .gas-option:hover {
+    transform: none;
+  }
+}

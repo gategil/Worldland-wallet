@@ -2,18 +2,29 @@
   "name": "worldland-wallet",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/worldlandcafe",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.9.0",
+    "crypto-js": "^4.2.0",
+    "ethers": "^6.14.3",
+    "html5-qrcode": "^2.3.8",
+    "lucide-react": "^0.514.0",
+    "qrcode": "^1.5.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-scripts": "5.0.1",
+    "react-qr-code": "^2.0.15",
+    "react-scripts": "^5.0.1",
+    "three": "^0.181.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:host": "cross-env HOST=0.0.0.0 react-scripts start",
+    "start:https": "cross-env HTTPS=true HOST=0.0.0.0 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -22,7 +33,22 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "env": {
+      "browser": true,
+      "es2020": true,
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2020,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "globals": {
+      "BigInt": "readonly"
+    }
   },
   "browserslist": {
     "production": [
@@ -35,5 +61,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "resolutions": {
+    "webpack-dev-server": "^4.15.0"
   }
 }

@@ -1,0 +1,553 @@
+/* src/styles/ReceiveWLC.css */
+
+.receive-wlc {
+  padding: 24px;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.receive-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--gray-100);
+}
+
+.receive-header h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gray-800);
+}
+
+/* QR 코드 섹션 */
+.qr-section {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.qr-container {
+  display: inline-block;
+  padding: 24px;
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  margin-bottom: 16px;
+  border: 3px solid var(--gray-100);
+  position: relative;
+  overflow: hidden;
+}
+
+.qr-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: 
+    conic-gradient(from 0deg, 
+      transparent 0deg, 
+      rgba(102, 126, 234, 0.05) 90deg, 
+      transparent 180deg,
+      rgba(118, 75, 162, 0.05) 270deg,
+      transparent 360deg);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.qr-code {
+  border-radius: var(--radius-md);
+  position: relative;
+  z-index: 1;
+}
+
+.qr-placeholder {
+  width: 256px;
+  height: 256px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--gray-50);
+  border: 2px dashed var(--gray-300);
+  border-radius: var(--radius-lg);
+  color: var(--gray-500);
+  position: relative;
+  z-index: 1;
+}
+
+.qr-placeholder svg {
+  margin-bottom: 12px;
+  color: var(--primary-color);
+}
+
+.qr-description {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+/* 주소 섹션 */
+.address-section {
+  margin-bottom: 28px;
+  padding: 20px;
+  background: linear-gradient(135deg, var(--gray-50) 0%, #f8fafc 100%);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--gray-200);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.section-header h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+.address-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: white;
+  border: 2px solid var(--gray-200);
+  color: var(--gray-600);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all var(--transition-fast);
+  font-weight: 500;
+}
+
+.action-button:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  transform: translateY(-1px);
+}
+
+.action-button.copied {
+  background: var(--success-color);
+  color: white;
+  border-color: var(--success-color);
+}
+
+.address-display {
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 16px;
+  border: 1px solid var(--gray-200);
+}
+
+.address-full {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--gray-700);
+  word-break: break-all;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.address-short {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--gray-500);
+  font-weight: 600;
+  text-align: center;
+  padding: 8px 16px;
+  background: var(--gray-50);
+  border-radius: var(--radius-md);
+}
+
+/* 네트워크 섹션 */
+.network-section {
+  margin-bottom: 28px;
+}
+
+.network-info {
+  background: white;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+
+.network-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.network-item:last-child {
+  border-bottom: none;
+}
+
+.network-item .label {
+  font-weight: 500;
+  color: var(--gray-600);
+}
+
+.network-item .value {
+  font-weight: 600;
+  color: var(--gray-800);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+/* 결제 요청 섹션 */
+.payment-request-section {
+  margin-bottom: 28px;
+}
+
+.toggle-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gray-100);
+  border: 2px solid var(--gray-200);
+  color: var(--gray-600);
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all var(--transition-fast);
+  font-weight: 500;
+}
+
+.toggle-button:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.payment-request-form {
+  margin-top: 16px;
+  padding: 20px;
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+  border: 2px solid var(--gray-200);
+}
+
+.amount-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.amount-input input {
+  flex: 1;
+  padding-right: 60px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.amount-input .currency {
+  position: absolute;
+  right: 16px;
+  color: var(--gray-500);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.payment-preview {
+  margin-top: 20px;
+  padding: 16px;
+  background: white;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--primary-color);
+}
+
+.payment-preview h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 12px;
+}
+
+.preview-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.preview-item:last-of-type {
+  border-bottom: none;
+  margin-bottom: 16px;
+}
+
+.preview-item span:first-child {
+  font-weight: 500;
+  color: var(--gray-600);
+}
+
+.preview-item span:last-child {
+  font-weight: 600;
+  color: var(--gray-800);
+}
+
+.copy-link-button {
+  width: 100%;
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+}
+
+.copy-link-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.copy-link-button.copied {
+  background: var(--success-color);
+}
+
+/* 주의사항 섹션 */
+.warning-section {
+  margin-bottom: 28px;
+}
+
+.warning-box {
+  background: var(--warning-bg);
+  border: 2px solid var(--warning-color);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.warning-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--warning-color);
+}
+
+.warning-box h4 {
+  color: var(--warning-color);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.warning-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.warning-box li {
+  color: var(--gray-700);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  padding-left: 16px;
+  position: relative;
+}
+
+.warning-box li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--warning-color);
+  font-weight: bold;
+}
+
+.warning-box li:last-child {
+  margin-bottom: 0;
+}
+
+/* 빠른 액션 */
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.quick-action-button {
+  width: 100%;
+  background: white;
+  color: var(--gray-700);
+  border: 2px solid var(--gray-200);
+  padding: 14px 20px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.quick-action-button:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+  .receive-wlc {
+    padding: 20px;
+  }
+  
+  .qr-container {
+    padding: 20px;
+  }
+  
+  .qr-code,
+  .qr-placeholder {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .address-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .network-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .qr-container {
+    padding: 16px;
+  }
+  
+  .qr-code,
+  .qr-placeholder {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .address-full {
+    font-size: 0.75rem;
+  }
+  
+  .address-short {
+    font-size: 1rem;
+  }
+  
+  .action-button,
+  .toggle-button {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+  
+  .payment-request-form {
+    padding: 16px;
+  }
+  
+  .warning-box {
+    padding: 16px;
+  }
+}
+
+/* QR 코드 액션 버튼 */
+.qr-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 16px;
+  flex-wrap: nowrap; /* 한 줄 유지 */
+}
+
+.qr-action-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.2s ease;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  flex: 1; /* 동일한 너비로 분배 */
+  justify-content: center;
+  max-width: 200px; /* 최대 너비 제한 */
+}
+
+.qr-action-button:hover {
+  background-color: #e9ecef;
+  border-color: #d0d0d0;
+  transform: translateY(-1px);
+}
+
+.qr-action-button:active {
+  transform: translateY(0);
+}
+
+.qr-action-button.copied {
+  background-color: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+}
+
+.qr-action-button svg {
+  flex-shrink: 0;
+}
+
+/* 반응형 디자인 - 작은 화면에서도 한 줄 유지 */
+@media (max-width: 480px) {
+  .qr-actions {
+    gap: 8px; /* 간격을 좁게 */
+  }
+  
+  .qr-action-button {
+    padding: 8px 12px; /* 패딩을 줄여서 공간 확보 */
+    font-size: 13px;
+    max-width: none; /* 최대 너비 제한 해제 */
+  }
+}

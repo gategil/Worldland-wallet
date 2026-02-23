@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "WorldLand Wallet User Guide",
+    "description": "This document serves as a comprehensive user guide for WorldLand Wallet, a dedicated wallet for the WorldLand blockchain. It provides detailed, step-by-step explanations to help users of all levels, from beginners to experienced users, utilize the wallet safely and efficiently.",
+    "url": "/userGuide_EN.pdf",
+    "category": "Guide",
+    "date": "2025-06-19"
+  },  
+  {
+    "id": 2,
+    "title": "월드랜드 전용 지갑 사용법",
+    "description": "이 문서는 WorldLand 블록체인 전용 지갑인 WorldLand Wallet의 포괄적인 사용법 가이드입니다. 초보자부터 숙련된 사용자까지 모든 수준의 사용자가 지갑을 안전하고 효율적으로 활용할 수 있도록 단계별로 상세히 설명되어 있습니다.",
+    "url": "/userGuide_KR.pdf",
+    "category": "Guide",
+    "date": "2025-06-19"
+  },  
+  {
+    "id": 3,
+    "title": "월드랜드 전용 지갑 소개",
+    "description": "월드랜드 전용 지갑에 대해 소개합니다.",
+    "url": "/world_land_wallet_summary_KR.html",
+    "category": "가이드",
+    "date": "2024-01-10"
+  }
+]

@@ -1,0 +1,392 @@
+/* src/styles/WalletSetup.css */
+
+.wallet-setup {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  animation: fadeIn 0.6s ease-out;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+.setup-container {
+  background: white;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-2xl);
+  overflow-y: scroll;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.setup-header {
+  background: var(--primary-gradient);
+  color: white;
+  padding: 10px 30px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+} 
+
+.setup-header .logo {
+  margin-bottom: 24px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  position: relative;
+  z-index: 1;
+}
+
+.setup-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 5px;
+  font-weight: 800;
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.setup-header p {
+  opacity: 0.95;
+  font-size: 1.2rem;
+  font-weight: 300;
+  position: relative;
+  z-index: 1;
+  letter-spacing: 0.5px;
+}
+
+/* 탭 컨테이너 */
+.setup-tabs {
+  display: flex;
+  margin-bottom: 2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 4px;
+  gap: 4px;
+}
+
+/* 기본 탭 버튼 스타일 */
+.tab {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  font-weight: 500;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* 탭 호버 효과 */
+.tab:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+/* 활성 탭 스타일 - 명확하게 구분되도록 */
+.tab.active {
+  background: white;
+  color: #4f46e5;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+/* 활성 탭 아이콘 색상 */
+.tab.active svg {
+  color: #4f46e5;
+}
+
+/* 비활성 탭 아이콘 색상 */
+.tab:not(.active) svg {
+  color: #9ca3af;
+}
+
+.tab-content {
+  padding: 0px 30px;
+  background: white;
+  margin-bottom: 10px;
+  height: 60vh;
+}
+
+.form-group {
+  padding: 1px; 
+}
+
+/* 비밀번호 입력 */
+.password-input {
+  position: relative;
+}
+
+.password-input input {
+  padding-right: 50px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--gray-400);
+  transition: color var(--transition-fast);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.password-toggle:hover {
+  color: var(--gray-600);
+  background: var(--gray-100);
+}
+
+/* 비밀번호 강도 */
+.password-strength {
+  margin-top: 12px;
+}
+
+.strength-bar {
+  height: 6px;
+  background: var(--gray-200);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.strength-fill {
+  height: 100%;
+  transition: all var(--transition-normal);
+  border-radius: 3px;
+}
+
+.strength-text {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 체크박스 라벨 */
+.checkbox-label {
+  display: flex !important;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-weight: normal !important;
+  line-height: 1.5;
+  padding: 16px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.checkbox-label:hover {
+  border-color: var(--primary-color);
+  background: var(--primary-light);
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px !important;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--primary-color);
+  cursor: pointer;
+}
+
+/* 가져오기 방법 탭 */
+.import-method {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  background: var(--gray-100);
+  padding: 6px;
+  border-radius: var(--radius-md);
+}
+
+.method-tab {
+  flex: 1;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  transition: all var(--transition-fast);
+  font-weight: 500;
+}
+
+.method-tab:hover {
+  color: var(--gray-700);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.method-tab.active {
+  background: white;
+  color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+/* 버튼 스타일 확장 */
+.primary-button {
+  width: 100%;
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  padding: 16px 24px;
+  border-radius: var(--radius-md);
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.primary-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.2) 50%, 
+    transparent 100%);
+  transition: left 0.5s ease;
+}
+
+.primary-button:hover:not(:disabled)::before {
+  left: 100%;
+}
+
+.primary-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.primary-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.text-button {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 12px 0;
+  transition: all var(--transition-fast);
+  font-weight: 500;
+  position: relative;
+}
+
+.text-button::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: width var(--transition-fast);
+}
+
+.text-button:hover::after {
+  width: 100%;
+}
+
+.account-selection {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9; 
+  font-size: 1.0rem;
+}
+
+.accounts-list {
+  max-height: 360px;
+  overflow-y: auto;
+  margin: 5px 0;
+}
+
+.account-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: white;
+}
+
+.account-item.active {
+  border-color: #007bff;
+  background: #f0f8ff;
+}
+
+.account-checkbox {
+  margin-right: 12px;
+}
+
+.account-info {
+  flex: 1;
+  max-width: 95%; 
+}
+
+.account-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.account-index {
+  font-weight: bold;
+  color: #333;
+}
+
+.activity-badge {
+  background: #28a745;
+  color: white;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 10px;
+}
+
+.account-address {
+  font-family: monospace;
+  font-size: 1.0rem; 
+  flex-wrap: wrap;
+  word-break: break-all;
+  overflow-wrap: break-word;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.account-details {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.account-details span {
+  margin-right: 12px;
+}
+
+.account-selection-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}

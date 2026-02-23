@@ -1,43 +1,242 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="ko">
+  <head> 
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <link rel="icon" href="%PUBLIC_URL%/worldland-wallet-favicon.ico" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    
+    <!-- 🛡️ 보안 헤더들 - XSS 공격 방어 -->
+    <!-- Content Security Policy: 개발 환경에서 완화된 보안 정책 -->
+    <!-- 개발 중에는 CSP를 비활성화하거나 완화할 수 있습니다 -->
+    <!--
+    <meta http-equiv="Content-Security-Policy" content="
+      default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:;
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com data: blob:;
+      style-src 'self' 'unsafe-inline' https://fonts.googleapis.com data:;
+      font-src 'self' https://fonts.gstatic.com data:;
+      img-src 'self' data: https: blob:;
+      connect-src 'self' https://scan.worldland.foundation https://worldland.foundation wss: ws: http://localhost:* https://localhost:*;
+      frame-src 'self' data: blob:;
+      object-src 'self' data:;
+      base-uri 'self';
+      form-action 'self';
+    ">
+    -->
+    
+    <!-- X-Frame-Options: 클릭재킹 공격 방어 -->
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    
+    <!-- X-Content-Type-Options: MIME 스니핑 공격 방어 -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    
+    <!-- Referrer Policy: 민감한 정보 유출 방지 -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- X-XSS-Protection: 브라우저 XSS 필터 활성화 (구형 브라우저용) -->
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    
+    <!-- Permissions Policy: 불필요한 브라우저 API 접근 차단 -->
+    <meta http-equiv="Permissions-Policy" content="
+      camera=(),
+      microphone=(),
+      geolocation=(),
+      interest-cohort=(),
+      payment=(),
+      usb=(),
+      bluetooth=(),
+      magnetometer=(),
+      gyroscope=(),
+      accelerometer=()
+    ">
+    
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Safe and fast Web3 wallet for Quantum-Resistant AI WorldLand Blockchain. WorldLand Wallet provides a secure and efficient solution for managing WorldLand Coin (WLC) on the WorldLand blockchain. Features include advanced encryption, multi-wallet support, real-time transaction monitoring, and seamless integration with the WorldLand ecosystem. Experience fast, secure, and user-friendly cryptocurrency management."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
+    <meta name="keywords" content="WorldLand, WLC, wallet, blockchain, worldland wallet">
+    <meta name="author" content="WorldlandCafe">
+
+    <!-- 검색엔진 크롤링 허용 -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://wallet.worldlandcafe.com/" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <!-- 다국어 지원 (새로 추가) -->
+    <link rel="alternate" hreflang="ko" href="https://wallet.worldlandcafe.com/" />
+    <link rel="alternate" hreflang="en" href="https://wallet.worldlandcafe.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://wallet.worldlandcafe.com/" />  
+    
+    <!-- PWA 관련 메타 태그 -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/worldland-wallet-logo-192x192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/images/worldland-wallet-logo-180.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/images/worldland-wallet-logo-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/images/worldland-wallet-logo-16.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <!-- 추가 로고 관련 메타태그들 -->
+    <link rel="mask-icon" href="%PUBLIC_URL%/images/worldland-wallet-logo-144x144.svg" color="#667eea" />
+    <meta name="msapplication-TileImage" content="%PUBLIC_URL%/worldland-wallet-logo-144.png" />
+    <meta name="msapplication-TileColor" content="#667eea" />
+
+    <!-- 소셜 미디어 공유용 로고 -->
+    <meta property="og:image" content="%PUBLIC_URL%/images/worldland-wallet-logo-512.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:title" content="WorldLand Wallet - Safe and fast Web3 Wallet" />
+    <meta property="og:description" content="안전하고 빠른 WorldLand Coin(WLC) 전용 지갑" />
+    <meta property="og:url" content="https://wallet.worldlandcafe.com/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter 카드 -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="%PUBLIC_URL%/images/worldland-wallet-logo-512.png" />
+    <meta name="twitter:title" content="WorldLand Wallet" />
+    <meta name="twitter:description" content="안전하고 빠른 WorldLand Coin(WLC) 전용 지갑" />
+
+    
+    <!-- 모바일 최적화 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="WorldLand Wallet">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- DNS Prefetch 최적화 (허용된 도메인만) -->
+    <link rel="dns-prefetch" href="//scan.worldland.foundation">
+    <link rel="dns-prefetch" href="//worldland.foundation">
+    
+    <title>WorldLand Wallet - 안전한 WLC 지갑</title>
+
+    <!-- 🔒 보안 스크립트: 런타임 보안 검사 -->
+    <script>
+      // CSP 위반 보고
+      document.addEventListener('securitypolicyviolation', function(e) {
+        console.error('CSP 위반 감지:', {
+          violatedDirective: e.violatedDirective,
+          blockedURI: e.blockedURI,
+          documentURI: e.documentURI,
+          lineNumber: e.lineNumber
+        });
+        
+        // 프로덕션에서는 보안 위반을 서버에 보고
+        if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'production') {
+          fetch('/api/security-report', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              type: 'csp_violation',
+              violatedDirective: e.violatedDirective,
+              blockedURI: e.blockedURI,
+              timestamp: new Date().toISOString()
+            })
+          }).catch(function() {}); // 에러 무시 (보안 보고는 선택사항)
+        }
+      });
+      
+      // 프로덕션에서 HTTPS 강제 (개발 환경 예외 처리 개선)
+      if (typeof window !== 'undefined' && window.location && 
+          process.env.NODE_ENV === 'production') {
+        if (window.location.hostname !== 'localhost' && 
+            window.location.hostname !== '127.0.0.1' && 
+            !window.location.hostname.includes('localhost') &&
+            window.location.protocol !== 'https:') {
+          window.location.replace('https:' + window.location.href.substring(window.location.protocol.length));
+        }
+      }
+      
+      // 개발자 도구 감지 (간단한 방법)
+      let devtools = {open: false, orientation: null};
+      const threshold = 160;
+      setInterval(function() {
+        if (window.outerHeight - window.innerHeight > threshold || 
+            window.outerWidth - window.innerWidth > threshold) {
+          if (!devtools.open) {
+            devtools.open = true;
+            console.warn('⚠️ 개발자 도구가 감지되었습니다. 보안을 위해 민감한 정보에 주의하세요.');
+          }
+        } else {
+          devtools.open = false;
+        }
+      }, 500);
+      
+      // 콘솔 보안 경고
+      console.log('%c🛡️ 보안 경고', 'color: red; font-size: 20px; font-weight: bold;');
+      console.log('%c이 콘솔은 개발자를 위한 브라우저 기능입니다. 누군가 여기에 코드를 복사/붙여넣기 하라고 했다면, 이는 사기일 가능성이 높으며 공격자가 당신의 WorldLand Wallet에 접근할 수 있게 됩니다.', 'color: red; font-size: 14px;');
+      console.log('%c무엇을 하고 있는지 정확히 알지 못한다면, 이 창을 닫고 안전을 유지하세요.', 'color: red; font-size: 14px; font-weight: bold;');
+      
+      // 전역 오류 처리
+      window.addEventListener('error', function(e) {
+        console.error('전역 오류 감지:', e.error);
+        // 프로덕션에서는 오류를 서버에 보고할 수 있음
+      });
+      
+      window.addEventListener('unhandledrejection', function(e) {
+        console.error('처리되지 않은 Promise 거부:', e.reason);
+        // 프로덕션에서는 오류를 서버에 보고할 수 있음
+      });
+    </script>
   </head>
+
+
+    
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>
+      <div style="text-align: center; padding: 50px; font-family: Arial, sans-serif;">
+        <h2>⚠️ JavaScript가 필요합니다</h2>
+        <p>WorldLand Wallet을 사용하려면 JavaScript를 활성화해주세요.</p>
+        <p>브라우저 설정에서 JavaScript를 활성화한 후 페이지를 새로고침하세요.</p>
+      </div>
+    </noscript>
+    
+    <!-- 메인 앱 컨테이너 -->
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+    
+    <!-- 🔒 추가 보안 스크립트 -->
+    <script>
+      // 악성 확장 프로그램 감지
+      (function() {
+        const suspiciousGlobals = [
+          '__ETHEREUM_PROVIDER__',
+          '__WALLET_CONNECT__',
+          '__PHANTOM__',
+          '__SOLANA__'
+        ];
+        
+        suspiciousGlobals.forEach(function(global) {
+          if (window[global]) {
+            console.warn('의심스러운 지갑 확장 프로그램이 감지되었습니다:', global);
+          }
+        });
+        
+        // 알려진 지갑 확장 프로그램 목록 (허용된 것들)
+        const knownWallets = ['ethereum']; // MetaMask 등
+        
+        // DOM 변조 감지 (기본적인 수준)
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+              mutation.addedNodes.forEach(function(node) {
+                if (node.nodeType === 1) { // Element node
+                  // 의심스러운 스크립트 태그 감지
+                  if (node.tagName === 'SCRIPT' && !node.src.startsWith(window.location.origin)) {
+                    console.warn('외부 스크립트 삽입 시도 감지:', node.src);
+                  }
+                }
+              });
+            }
+          });
+        });
+        
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true
+        });
+      })();
+    </script>
   </body>
 </html>

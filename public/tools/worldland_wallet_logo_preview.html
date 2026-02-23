@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorldLand Wallet 로고 미리보기</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .logo-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .logo-item {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo-item h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.1rem;
+        }
+        
+        .size-label {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        .controls {
+            margin: 30px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        label {
+            font-weight: 600;
+            min-width: 80px;
+        }
+        
+        input[type="color"] {
+            width: 40px;
+            height: 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        input[type="range"] {
+            width: 150px;
+        }
+        
+        .description {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        
+        .description h3 {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+        
+        .description ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .description li {
+            margin: 5px 0;
+            color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 WorldLand Wallet 로고 디자인</h1>
+        <p>빨간색 WorldLand 로고 + 3D 금색 접이식 반지갑</p>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label>로고 색상:</label>
+                <input type="color" id="logoColor" value="#df3128">
+            </div>
+            <div class="control-group">
+                <label>지갑 색상:</label>
+                <input type="color" id="walletColor" value="#DAA520">
+            </div>
+            <div class="control-group">
+                <label>크기 비율:</label>
+                <input type="range" id="sizeRatio" min="0.5" max="1.5" step="0.1" value="1.4">
+                <span id="sizeValue">100%</span>
+            </div>
+        </div>
+        
+        <div class="logo-showcase">
+            <div class="logo-item">
+                <h3>🖼️ Large (256x256)</h3>
+                <svg id="logo-large" width="256" height="256" viewBox="0 0 200 280"></svg>
+                <div class="size-label">고해상도용</div>
+            </div>
+        </div>
+        
+        <div class="description">
+            <h3>🎯 디자인 특징</h3>
+            <ul>
+                <li><strong>카드 중심 디자인</strong>: 깔끔하게 카드들만 표시하는 미니멀 구성</li>
+                <li><strong>카드 내 로고</strong>: 각 카드 안에 적절한 크기의 빨간색 WorldLand 로고 배치</li>
+                <li><strong>브랜드 통합</strong>: 모든 카드에 "WORLDLAND" 텍스트와 로고로 브랜드 강화</li>
+                <li><strong>3장의 카드</strong>: 파란색, 빨간색, 초록색 카드가 팬 모양으로 배치</li>
+                <li><strong>현실적 디테일</strong>: 금색 칩, 카드번호, 하이라이트 효과</li>
+                <li><strong>중앙 카드 강조</strong>: 빨간색 카드(메인)의 로고를 약간 더 크게 표시</li>
+                <li><strong>깔끔한 구성</strong>: 불필요한 요소 제거로 카드와 로고에 집중</li>
+            </ul>
+            
+            <h3>💳 카드별 로고 배치</h3>
+            <ul>
+                <li><strong>파란색 카드</strong>: 우측 상단에 WorldLand 로고 (-6도 회전)</li>
+                <li><strong>빨간색 카드</strong>: 우측 상단에 더 큰 WorldLand 로고 (메인 카드)</li>
+                <li><strong>초록색 카드</strong>: 우측 상단에 WorldLand 로고 (+6도 회전)</li>
+                <li><strong>통일된 브랜딩</strong>: 모든 카드에 동일한 빨간색 로고로 일관성 유지</li>
+                <li><strong>균형잡힌 배치</strong>: 칩, 로고, 텍스트가 조화롭게 배열</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // WorldLand 로고 경로 데이터
+        const logoPath1 = "m49.19,48.51c-.47.27-1.05.19-1.43-.2h-.01c-.38-.4-.45-.99-.18-1.45l12.52-21.32c.27-.46.82-.68,1.34-.54,1.08.3,2.22.47,3.4.47s2.3-.17,3.37-.46c.51-.14,1.06.09,1.33.55l3.97,6.82,4.17-2.37-4-6.86c-.27-.46-.2-1.05.18-1.43,2.43-2.44,3.89-5.86,3.7-9.62-.32-6.44-5.55-11.72-11.99-12.08-7.37-.41-13.47,5.44-13.47,12.72,0,3.49,1.41,6.65,3.69,8.95.38.38.45.97.18,1.43l-12.52,21.32c-.27.46-.82.68-1.34.54-1.08-.3-2.22-.47-3.4-.47s-2.3.17-3.37.46c-.51.14-1.06-.08-1.33-.55l-12.4-21.27c-.27-.47-.2-1.06.18-1.44l.03-.03c.38-.38.97-.46,1.43-.19l23.49,13.4,2.43-4.13h0s-23.54-13.43-23.54-13.43c-.47-.27-.7-.81-.56-1.33.52-1.95.6-4.08.05-6.31C23.79,4.39,19.17.45,13.74.04,5.93-.56-.53,5.89.03,13.69c.4,5.46,4.37,10.11,9.69,11.42,2.25.55,4.41.45,6.38-.09.52-.14,1.07.08,1.34.54l12.41,21.28c.27.46.2,1.05-.18,1.43-2.43,2.44-3.89,5.86-3.7,9.62.32,6.44,5.55,11.72,11.99,12.08,7.37.41,13.47-5.44,13.47-12.72,0-1.12-.15-2.21-.43-3.24-.14-.52.09-1.06.56-1.32l11.18-6.36-4.85-2.76-8.7,4.95Z";
+        
+        const logoPath2 = "m115.88.04c-5.42.42-10.04,4.36-11.35,9.64-.55,2.22-.47,4.35.05,6.3.14.52-.09,1.06-.56,1.33l-37.23,21.18h0s4.85,2.76,4.85,2.76h0s34.75-19.78,34.75-19.78c.46-.26,1.05-.18,1.42.19l.02.02c.38.38.45.97.18,1.44l-12.52,21.32c-.27.46-.82.68-1.34.54-1.08-.3-2.22-.47-3.40-.47s-2.3.17-3.37.46c-.51.14-1.06-.08-1.33-.55l-3.98-6.82-4.17,2.37,4,6.86c.27.47.2,1.06-.18,1.44l-.03.03c-.38.38-.97.46-1.43.19l-23.48-13.41h0s-2.43,4.15-2.43,4.15h0s23.55,13.43,23.55,13.43c.47.27.7.81.56,1.33-.42,1.58-.55,3.28-.3,5.04.88,6.1,6.14,10.79,12.29,10.94,7.18.17,13.05-5.59,13.05-12.73,0-3.49-1.41-6.65-3.69-8.95-.38-.38-.45-.97-.18-1.43l12.52-21.32c.27-.46.82-.69,1.34-.54,1.98.56,4.14.66,6.41.11,5.33-1.3,9.3-5.96,9.7-11.43.56-7.8-5.91-14.25-13.72-13.65Z";
+
+        function generateWalletLogo(logoColor, walletColor, sizeRatio) {
+            const cardScale = 1.0 * sizeRatio;
+            const logoInCardScale = 0.15 * sizeRatio; // 카드 안 로고 크기
+            
+            return `
+                <defs>
+                    <!-- 카드 그라데이션들 -->
+                    <linearGradient id="card1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#4A90E2"/>
+                        <stop offset="100%" style="stop-color:#357ABD"/>
+                    </linearGradient>
+                    
+                    <linearGradient id="card2" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#E74C3C"/>
+                        <stop offset="100%" style="stop-color:#C0392B"/>
+                    </linearGradient>
+                    
+                    <linearGradient id="card3" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#2ECC71"/>
+                        <stop offset="100%" style="stop-color:#27AE60"/>
+                    </linearGradient>
+                    
+                    <!-- 카드 하이라이트 -->
+                    <linearGradient id="cardHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.3"/>
+                        <stop offset="30%" style="stop-color:#ffffff;stop-opacity:0.1"/>
+                        <stop offset="100%" style="stop-color:transparent"/>
+                    </linearGradient>
+                    
+                    <!-- 그림자 효과 -->
+                    <filter id="cardShadow">
+                        <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.4"/>
+                    </filter>
+                </defs>
+                
+                <!-- 신용카드들 (중앙 정렬) -->
+                <g transform="translate(100, 140) scale(${cardScale})" style="transform-origin: center;">
+                    <g transform="translate(-60, -40)">
+                        
+                        <!-- 카드 바닥 그림자 -->
+                        <ellipse cx="60" cy="50" rx="55" ry="8" fill="#000000" opacity="0.15"/>
+                        
+                        <!-- 카드 1 (가장 뒤, 파란색) -->
+                        <g transform="rotate(-6 60 30)" filter="url(#cardShadow)">
+                            <rect x="15" y="15" width="90" height="55" rx="8" fill="url(#card1)" stroke="#2C5F8A" stroke-width="1"/>
+                            <rect x="15" y="15" width="90" height="18" rx="8" fill="url(#cardHighlight)"/>
+                            
+                            <!-- 카드 칩 -->
+                            <rect x="25" y="35" width="18" height="14" rx="3" fill="#FFD700" stroke="#DAA520" stroke-width="0.5"/>
+                            
+                            <!-- 카드 안 WorldLand 로고 -->
+                            <g transform="translate(70, 45) scale(${logoInCardScale})">
+                                <path fill="${logoColor}" d="${logoPath1}"/>
+                                <path fill="${logoColor}" d="${logoPath2}"/>
+                            </g>
+                            
+                            <!-- 카드 번호 -->
+                            <text x="25" y="58" font-family="Courier" font-size="8" fill="#ffffff" font-weight="bold">**** ****</text>
+                            <text x="25" y="66" font-family="Courier" font-size="6" fill="#ffffff">WORLDLAND</text>
+                        </g>
+                        
+                        <!-- 카드 2 (중간, 빨간색) -->
+                        <g transform="rotate(0 60 30)" filter="url(#cardShadow)">
+                            <rect x="20" y="10" width="90" height="55" rx="8" fill="url(#card2)" stroke="#A93226" stroke-width="1"/>
+                            <rect x="20" y="10" width="90" height="18" rx="8" fill="url(#cardHighlight)"/>
+                            
+                            <!-- 카드 칩 -->
+                            <rect x="30" y="30" width="18" height="14" rx="3" fill="#FFD700" stroke="#DAA520" stroke-width="0.5"/>
+                            
+                            <!-- 카드 안 WorldLand 로고 (메인 카드) -->
+                            <g transform="translate(75, 40) scale(${logoInCardScale * 1.1})">
+                                <path fill="${logoColor}" d="${logoPath1}"/>
+                                <path fill="${logoColor}" d="${logoPath2}"/>
+                            </g>
+                            
+                            <!-- 카드 번호 -->
+                            <text x="30" y="53" font-family="Courier" font-size="8" fill="#ffffff" font-weight="bold">**** ****</text>
+                            <text x="30" y="61" font-family="Courier" font-size="6" fill="#ffffff">WORLDLAND</text>
+                        </g>
+                        
+                        <!-- 카드 3 (가장 앞, 초록색) -->
+                        <g transform="rotate(6 60 30)" filter="url(#cardShadow)">
+                            <rect x="25" y="5" width="90" height="55" rx="8" fill="url(#card3)" stroke="#1E8449" stroke-width="1"/>
+                            <rect x="25" y="5" width="90" height="18" rx="8" fill="url(#cardHighlight)"/>
+                            
+                            <!-- 카드 칩 -->
+                            <rect x="35" y="25" width="18" height="14" rx="3" fill="#FFD700" stroke="#DAA520" stroke-width="0.5"/>
+                            
+                            <!-- 카드 안 WorldLand 로고 -->
+                            <g transform="translate(80, 35) scale(${logoInCardScale})">
+                                <path fill="${logoColor}" d="${logoPath1}"/>
+                                <path fill="${logoColor}" d="${logoPath2}"/>
+                            </g>
+                            
+                            <!-- 카드 번호 -->
+                            <text x="35" y="48" font-family="Courier" font-size="8" fill="#ffffff" font-weight="bold">**** ****</text>
+                            <text x="35" y="56" font-family="Courier" font-size="6" fill="#ffffff">WORLDLAND</text>
+                        </g>
+                        
+                    </g>
+                </g>
+            `;
+        }
+
+        function updateLogos() {
+            const logoColor = document.getElementById('logoColor').value;
+            const walletColor = document.getElementById('walletColor').value;
+            const sizeRatio = parseFloat(document.getElementById('sizeRatio').value);
+            
+            document.getElementById('sizeValue').textContent = Math.round(sizeRatio * 100) + '%';
+            
+            const logoSVG = generateWalletLogo(logoColor, walletColor, sizeRatio);
+            
+            document.getElementById('logo-large').innerHTML = logoSVG;
+        }
+
+        // 이벤트 리스너
+        document.getElementById('logoColor').addEventListener('change', updateLogos);
+        document.getElementById('walletColor').addEventListener('change', updateLogos);
+        document.getElementById('sizeRatio').addEventListener('input', updateLogos);
+
+        // 초기 렌더링
+        updateLogos();
+    </script>
+</body>
+</html>

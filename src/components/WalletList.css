@@ -1,0 +1,2346 @@
+/* src/components/WalletList.css */
+
+.wallet-list {
+  padding: 24px;
+  width: 100%;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.wallet-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--gray-100);
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-title h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin: 0;
+}
+
+.wallet-count {
+  font-size: 0.9rem;
+  color: var(--gray-500);
+  font-weight: 500;
+} 
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--gray-200);
+  background: white;
+  color: var(--gray-600);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.action-btn:hover:not(:disabled) {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.refresh-btn:hover:not(:disabled) {
+  border-color: var(--success-color);
+  color: var(--success-color);
+}
+
+.add-btn:hover:not(:disabled) {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.import-btn:hover:not(:disabled) {
+  border-color: var(--warning-color);
+  color: var(--warning-color);
+}
+
+/* 메시지 */
+.message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  border-left: 4px solid;
+  position: relative;
+  line-height: 1.3;
+  min-height: 40px;
+}
+
+.message button {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  opacity: 0.7;
+  transition: opacity var(--transition-fast);
+}
+
+.message button:hover {
+  opacity: 1;
+}
+
+.message.error {
+  background: var(--error-bg);
+  color: var(--error-color);
+  border-color: var(--error-color);
+}
+
+.message.success {
+  background: var(--success-bg);
+  color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+/* 빈 상태 */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--gray-500);
+  background: var(--gray-50);
+  border-radius: var(--radius-xl);
+  border: 2px dashed var(--gray-300);
+}
+
+.empty-state svg {
+  margin-bottom: 20px;
+  color: var(--gray-400);
+}
+
+.empty-state h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--gray-600);
+}
+
+.empty-state p {
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+
+.create-first-wallet-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.create-first-wallet-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* 지갑 컨테이너 */
+.wallets-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; 
+  max-height: 70vh;
+}
+
+.wallet-cards { 
+  background: rgb(220, 223, 211);
+  display: flex;
+  order: 2px solid var(--gray-200);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  flex-direction: column;
+  overflow-y:  scroll; 
+  gap: 5px;
+}
+/* 지갑 카드 */
+.wallet-card {
+  background: white;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-xl);
+  padding: 20px;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  position: relative;
+  overflow: visible;
+  z-index: 1;
+}
+
+.wallet-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: transparent;
+  transition: background var(--transition-fast);
+}
+
+.wallet-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.wallet-card.active {
+  border-color: var(--primary-color);
+  background: linear-gradient(135deg, var(--primary-light) 0%, white 100%);
+  box-shadow: var(--shadow-md); 
+}
+
+.wallet-card.active::before {
+  background: var(--primary-gradient);
+}
+
+.wallet-card-header {
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-between;
+  /* margin-bottom: 16px;   */
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* 메뉴가 열린 지갑 카드의 z-index를 높게 설정 */
+.wallet-card.menu-open {
+  z-index: 2;
+  position: relative;
+}
+ 
+
+/* .balance-amount {
+  font-size: 0.9rem;
+} */
+
+.wallet-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.wallet-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+
+.wallet-name h3 {
+  font-size: 1.0rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.active-star {
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.wallet-address {
+  font-family: var(--font-mono);
+  font-size: 1.0rem;
+  color: var(--gray-500);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color var(--transition-fast);
+}
+
+.wallet-address:hover {
+  color: var(--primary-color);
+}
+
+.wallet-balance {
+  text-align: right;
+  margin-right: 16px;
+}
+
+.balance-amount {
+  font-size: 1.0rem;
+  font-weight: 700;
+  color: var(--gray-800);
+  font-family: var(--font-mono);
+  display: block;
+}
+
+.balance-currency {
+  font-size: 1.0rem;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+/* 지갑 메뉴 */
+.wallet-menu {
+  position: relative;
+  z-index: 1000;
+}
+
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--gray-100);
+  color: var(--gray-600);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.menu-toggle:hover {
+  background: var(--gray-200);
+  color: var(--gray-800);
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: white; 
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  z-index: 9999;
+  min-width: 260px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.menu-dropdown button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: none;
+  color: var(--gray-700);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all var(--transition-fast);
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.menu-dropdown button:last-child {
+  border-bottom: none;
+}
+
+.menu-dropdown button:hover {
+  background: var(--gray-50);
+  color: var(--gray-900);
+}
+
+.menu-dropdown button.delete-btn {
+  color: var(--error-color);
+}
+
+.menu-dropdown button.delete-btn:hover {
+  background: var(--error-bg);
+  color: var(--error-color);
+}
+
+/* 지갑 세부사항 */
+.wallet-details {
+  margin-top: 50px;
+  padding-top: 12px;
+  border-top: 1px solid var(--gray-100);
+}
+
+.wallet-type {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+}
+
+.private-key-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: var(--gray-50);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-200);
+}
+
+.private-key-text {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--gray-600);
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+.private-key-display button {
+  flex-shrink: 0;
+  background: var(--gray-200);
+  border: none;
+  color: var(--gray-600);
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.private-key-display button:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* 별칭 편집 */
+.edit-alias {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 30%;
+  min-width: 0; /* flex 아이템이 줄어들 수 있도록 */
+}
+
+.edit-alias input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 2px solid var(--primary-color);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  font-weight: 600;
+  width: 150px;
+}
+
+.edit-alias input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.edit-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0; /* 버튼들이 줄어들지 않도록 */
+  margin-left: 8px;
+}
+
+.edit-actions button {
+  padding: 6px 12px;
+  border: 1px solid;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+/* Confirm 버튼 (첫 번째 버튼) */
+.edit-actions button:first-child {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: white;
+}
+
+.edit-actions button:first-child:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(40, 167, 69, 0.2);
+}
+
+.edit-actions button:first-child:active {
+  background-color: #1e7e34;
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(40, 167, 69, 0.2);
+}
+
+/* Cancel 버튼 (두 번째 버튼) */
+.edit-actions button:last-child {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+
+.edit-actions button:last-child:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(108, 117, 125, 0.2);
+}
+
+.edit-actions button:last-child:active {
+  background-color: #545b62;
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(108, 117, 125, 0.2);
+}
+
+/* 포커스 상태 */
+.edit-actions button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* 비활성화 상태 */
+.edit-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.edit-actions button:disabled:hover {
+  background-color: inherit;
+  border-color: inherit;
+}
+
+/* 모달 스타일 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background: white;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-2xl);
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 24px 0;
+  margin-bottom: 20px;
+}
+
+.modal-header h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin: 0;
+}
+
+.modal-header button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--gray-400);
+  transition: color var(--transition-fast);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+}
+
+.modal-header button:hover {
+  color: var(--gray-600);
+  background: var(--gray-100);
+}
+
+.modal-body {
+  padding: 0 24px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  padding: 24px;
+  border-top: 1px solid var(--gray-200);
+  margin-top: 24px;
+}
+
+.primary-btn {
+  flex: 1;
+  background: var(--primary-gradient);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.primary-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cancel-btn {
+  flex: 1;
+  background: var(--gray-100);
+  color: var(--gray-700);
+  border: 2px solid var(--gray-200);
+  padding: 12px 24px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.cancel-btn:hover {
+  background: var(--gray-200);
+  border-color: var(--gray-300);
+}
+
+/* 방법 선택자 */
+.method-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  background: var(--gray-100);
+  padding: 6px;
+  border-radius: var(--radius-md);
+}
+
+.method-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  transition: all var(--transition-fast);
+  font-weight: 500;
+}
+
+.method-btn:hover {
+  color: var(--gray-700);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.method-btn.active {
+  background: white;
+  color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.import-type-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  background: var(--gray-50);
+  padding: 4px;
+  border-radius: var(--radius-md);
+}
+
+.type-btn {
+  flex: 1;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  transition: all var(--transition-fast);
+  font-weight: 500;
+}
+
+.type-btn:hover {
+  color: var(--gray-700);
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.type-btn.active {
+  background: white;
+  color: var(--primary-color);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 폼 그룹 */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--gray-700);
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+  font-family: inherit;
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* 에러/성공 메시지 (모달용) */
+.error-message,
+.success-message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  margin: 0 24px 20px;
+  border-left: 4px solid;
+}
+
+.error-message {
+  background: var(--error-bg);
+  color: var(--error-color);
+  border-color: var(--error-color);
+}
+
+.success-message {
+  background: var(--success-bg);
+  color: var(--success-color);
+  border-color: var(--success-color);
+}
+
+/* 가져오기/내보내기 섹션 */
+.import-export-section {
+  margin-bottom: 32px;
+  padding: 20px;
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gray-200);
+}
+
+.import-export-section h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 8px;
+}
+
+.import-export-section p {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.export-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--success-color);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.export-btn:hover {
+  background: var(--success-color);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.import-section {
+  padding: 20px;
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gray-200);
+}
+
+.import-section h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 8px;
+}
+
+.import-section p {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.file-upload {
+  margin-bottom: 20px;
+}
+
+.file-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--gray-100);
+  color: var(--gray-700);
+  border: 2px solid var(--gray-200);
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+}
+
+.file-upload-btn:hover {
+  background: var(--primary-light);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+/* 잠금 해제 정보 */
+.unlock-info {
+  text-align: center;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gray-200);
+}
+
+.unlock-info p {
+  color: var(--gray-600);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.unlock-options {
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gray-200);
+}
+
+/* 스피너 애니메이션 개선 */
+.spin {
+  animation: spin 1s linear infinite !important;
+  transform-origin: center center;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* refresh 버튼 스피너 특별 처리 */
+.refresh-btn .spin {
+  animation: spin 0.8s linear infinite !important;
+}
+
+.refresh-btn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 768px) {
+  .wallet-list {
+    padding: 20px;
+  }
+  
+  .wallet-list-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }  
+  
+  .modal-content {
+    margin: 10px;
+    max-width: calc(100vw - 20px);
+  }
+  
+  .modal-actions {
+    flex-direction: column;
+  }
+  
+  .method-selector {
+    flex-direction: column;
+    gap: 4px;
+  }
+  
+  .method-btn {
+    padding: 14px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wallet-list {
+    padding: 16px;
+  }
+  
+  .wallet-card {
+    padding: 16px;
+  }
+  
+  .header-title h2 {
+    font-size: 1.2rem;
+  }
+  
+  /* .wallet-name h3 {
+    font-size: 1rem;
+  } */
+  
+  /* .wallet-address {
+    font-size: 0.8rem;
+  } */
+  
+  /* .balance-amount {
+    font-size: 1rem;
+  } */
+  
+  .modal-header {
+    padding: 20px 20px 0;
+  }
+  
+  .modal-body {
+    padding: 0 20px;
+  }
+  
+  .modal-actions {
+    padding: 20px;
+  }
+  
+  .private-key-text {
+    font-size: 0.7rem;
+  }
+  
+  .empty-state {
+    padding: 40px 16px;
+  }
+  
+  .empty-state h3 {
+    font-size: 1.1rem;
+  }
+  
+  .import-export-section,
+  .import-section {
+    padding: 16px;
+  }
+  
+  .unlock-info {
+    padding: 12px;
+  }
+  
+  .unlock-options {
+    margin-top: 16px;
+    padding-top: 16px;
+  }
+}
+
+/* 복구구문 표시 영역 */
+.mnemonic-display {
+  margin-top: 16px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px solid #dee2e6;
+  border-radius: 12px;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mnemonic-display::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #dc3545, #fd7e14, #ffc107);
+  border-radius: 12px;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+/* 경고 메시지 */
+.mnemonic-warning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeaa7;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  color: #856404;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.4;
+  position: relative;
+}
+
+.mnemonic-warning::before {
+  content: "⚠";
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #f39c12;
+}
+
+.mnemonic-warning {
+  padding-left: 45px;
+}
+
+/* 복구구문 텍스트 */
+.mnemonic-text {
+  background-color: #ffffff;
+  border: 2px dashed #ced4da;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 16px 0;
+  font-family: 'Courier New', Monaco, monospace;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #495057;
+  word-spacing: 8px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  user-select: all;
+  cursor: text;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow-wrap: break-word;
+}
+
+.mnemonic-text:hover {
+  border-color: #6c757d;
+  background-color: #f8f9fa;
+}
+
+.mnemonic-text::before {
+  content: "복구구문을 선택하여 복사할 수 있습니다";
+  position: absolute;
+  top: -8px;
+  left: 16px;
+  background-color: #ffffff;
+  padding: 0 8px;
+  font-size: 11px;
+  color: #6c757d;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: normal;
+  letter-spacing: normal;
+  word-spacing: normal;
+}
+
+/* 안내 메시지 */
+.mnemonic-instructions {
+  background-color: #e7f3ff;
+  border: 1px solid #b8daff;
+  border-radius: 8px;
+  padding: 14px 16px;
+  color: #0c5460;
+  font-size: 13px;
+  line-height: 1.5;
+  position: relative;
+}
+
+.mnemonic-instructions::before {
+  content: "ℹ";
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #0ea5e9;
+  font-weight: bold;
+}
+
+.mnemonic-instructions {
+  padding-left: 40px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .mnemonic-display {
+    padding: 16px;
+    margin-top: 12px;
+  }
+  
+  .mnemonic-text {
+    font-size: 14px;
+    padding: 16px;
+    word-spacing: 4px;
+  }
+  
+  .mnemonic-warning,
+  .mnemonic-instructions {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+  
+  .mnemonic-warning {
+    padding-left: 35px;
+  }
+  
+  .mnemonic-instructions {
+    padding-left: 35px;
+  }
+}
+
+/* 다크 모드 지원 (선택사항) */
+@media (prefers-color-scheme: dark) {
+  .mnemonic-display {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    border-color: #4a5568;
+  }
+  
+  .mnemonic-warning {
+    background-color: #744d00;
+    border-color: #975a16;
+    color: #fbb94e;
+  }
+  
+  .mnemonic-text {
+    background-color: #1a202c;
+    border-color: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .mnemonic-text:hover {
+    border-color: #718096;
+    background-color: #2d3748;
+  }
+  
+  .mnemonic-instructions {
+    background-color: #1e3a8a;
+    border-color: #3b82f6;
+    color: #bfdbfe;
+  }
+}
+
+/* 프린트 스타일 */
+@media print {
+  .mnemonic-display {
+    background: white !important;
+    border: 2px solid #000 !important;
+    box-shadow: none !important;
+  }
+  
+  .mnemonic-text {
+    background: white !important;
+    border: 1px solid #000 !important;
+    font-size: 14px !important;
+  }
+}
+
+/* 계정 선택 관련 스타일 - WalletList용 */
+.add-wallet-modal .account-selection {
+  margin-top: 15px;
+  padding: 0;
+}
+
+.add-wallet-modal .account-selection-info {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border: 1px solid #e9ecef;
+}
+
+.add-wallet-modal .account-selection-info p {
+  margin: 0 0 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.add-wallet-modal .account-selection-info p:last-child {
+  margin-bottom: 0;
+  font-size: 12px;
+  color: #888;
+}
+
+.add-wallet-modal .accounts-list {
+  max-height: 250px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: white;
+  margin-bottom: 15px;
+}
+
+.add-wallet-modal .account-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.add-wallet-modal .account-item:last-child {
+  border-bottom: none;
+}
+
+.add-wallet-modal .account-item:hover {
+  background-color: #f8f9fa;
+}
+
+.add-wallet-modal .account-item.active {
+  background-color: #e3f2fd;
+  border-left: 3px solid #2196F3;
+}
+
+.add-wallet-modal .account-checkbox {
+  margin-right: 12px;
+}
+
+.add-wallet-modal .account-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.add-wallet-modal .account-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.add-wallet-modal .account-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.add-wallet-modal .account-index {
+  font-weight: 600;
+  color: #333;
+  font-size: 13px;
+}
+
+.add-wallet-modal .activity-badge {
+  background: #4CAF50;
+  color: white;
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+.add-wallet-modal .account-address {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 4px;
+  word-break: break-all;
+}
+
+.add-wallet-modal .account-details {
+  font-size: 11px;
+  color: #888;
+}
+
+.add-wallet-modal .account-details span {
+  margin-right: 12px;
+}
+
+.add-wallet-modal .account-selection-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  padding-top: 15px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.add-wallet-modal .account-selection-actions .primary-btn,
+.add-wallet-modal .account-selection-actions .cancel-btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.add-wallet-modal .account-selection-actions .primary-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+}
+
+.add-wallet-modal .account-selection-actions .primary-btn:hover:not(:disabled) {
+  background: #0056b3;
+}
+
+.add-wallet-modal .account-selection-actions .primary-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.add-wallet-modal .account-selection-actions .cancel-btn {
+  background: white;
+  color: #666;
+  border: 1px solid #ddd;
+}
+
+.add-wallet-modal .account-selection-actions .cancel-btn:hover {
+  background: #f8f9fa;
+}
+
+/* 테스트 버튼 스타일 */
+.add-wallet-modal .test-buttons button {
+  margin: 0 3px;
+  font-size: 11px !important;
+  padding: 4px 8px !important;
+}
+
+/* 모달 크기 조정 */
+.add-wallet-modal {
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.add-wallet-modal .modal-body {
+  max-height: none;
+}
+
+/* AddAccount 버튼 스타일 */
+.add-account-btn:hover:not(:disabled) {
+  border-color: var(--info-color, #17a2b8);
+  color: var(--info-color, #17a2b8);
+  background: rgba(23, 162, 184, 0.1);
+}
+
+/* 지갑 그룹화 스타일 */
+.wallet-group-header {
+  margin: 10px 0 10px 0;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid #dee2e6;
+  border-radius: var(--radius-lg);
+  position: relative;
+}
+
+.wallet-group-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+.group-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.group-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.group-mnemonic {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  background: white;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gray-300);
+}
+
+.wallet-group-divider {
+  height: 0px;
+  position: relative;
+  margin: 15px 0;
+}
+
+.wallet-group-divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--gray-300) 50%, transparent 100%);
+}
+
+/* 그룹 내 지갑 카드 스타일 */
+.wallet-card.in-group {
+  margin-left: 16px;
+  border-left: 3px solid var(--primary-light);
+  background: linear-gradient(135deg, #f8fafe 0%, white 100%);
+}
+
+.wallet-card.in-group:hover {
+  border-left-color: var(--primary-color);
+  box-shadow: -4px 0 0 var(--primary-color), var(--shadow-lg);
+}
+
+.wallet-card.in-group.active {
+  border-left-color: var(--primary-color);
+  box-shadow: -4px 0 0 var(--primary-color), var(--shadow-md);
+}
+
+/* 계정 인덱스 배지 */
+.account-index-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 6px;
+  border-radius: 10px;
+  margin-right: 8px;
+  min-width: 24px;
+  text-align: center;
+  font-family: var(--font-mono);
+}
+
+.account-detail {
+  color: var(--gray-500);
+  font-size: 0.8rem;
+}
+
+/* AddAccountModal 스타일 */
+.add-account-modal {
+  max-width/* AddAccount 버튼 스타일 */
+.add-account-btn:hover:not(:disabled) {
+  border-color: var(--info-color, #17a2b8);
+  color: var(--info-color, #17a2b8);
+  background: rgba(23, 162, 184, 0.1);
+}
+
+/* 지갑 그룹화 스타일 */
+.wallet-group-header {
+  margin: 20px 0 10px 0;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 1px solid #dee2e6;
+  border-radius: var(--radius-lg);
+  position: relative;
+}
+
+.wallet-group-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+}
+
+.group-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.group-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.group-mnemonic {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  background: white;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gray-300);
+}
+
+.wallet-group-divider {
+  height: 20px;
+  position: relative;
+  margin: 15px 0;
+}
+
+.wallet-group-divider::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--gray-300) 50%, transparent 100%);
+}
+
+/* 그룹 내 지갑 카드 스타일 */
+.wallet-card.in-group {
+  margin-left: 16px;
+  border-left: 3px solid var(--primary-light);
+  background: linear-gradient(135deg, #f8fafe 0%, white 100%);
+}
+
+.wallet-card.in-group:hover {
+  border-left-color: var(--primary-color);
+  box-shadow: -4px 0 0 var(--primary-color), var(--shadow-lg);
+}
+
+.wallet-card.in-group.active {
+  border-left-color: var(--primary-color);
+  box-shadow: -4px 0 0 var(--primary-color), var(--shadow-md);
+}
+
+/* 계정 인덱스 배지 */
+.account-index-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 3px 6px;
+  border-radius: 10px;
+  margin-right: 8px;
+  min-width: 24px;
+  text-align: center;
+  font-family: var(--font-mono);
+}
+
+.account-detail {
+  color: var(--gray-500);
+  font-size: 0.8rem;
+}
+
+/* AddAccountModal 스타일 */
+.add-account-modal {
+  max-width: 520px;
+  width: 100%;
+}
+
+.add-account-modal .modal-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray-800);
+}
+
+/* 니모닉 지갑이 없을 때 */
+.no-mnemonic-wallets {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--gray-600);
+}
+
+.no-mnemonic-wallets svg {
+  color: var(--warning-color);
+  margin-bottom: 16px;
+}
+
+.no-mnemonic-wallets h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 12px;
+}
+
+.no-mnemonic-wallets p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--gray-600);
+  margin: 0;
+}
+
+/* 폼 그룹 - AddAccount 전용 */
+.add-account-modal .form-group {
+  margin-bottom: 24px;
+}
+
+.add-account-modal .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--gray-700);
+  font-size: 0.95rem;
+}
+
+.add-account-modal .form-group select,
+.add-account-modal .form-group input[type="number"],
+.add-account-modal .form-group input[type="text"] {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+  font-family: inherit;
+  background: white;
+}
+
+.add-account-modal .form-group select:focus,
+.add-account-modal .form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.add-account-modal .form-group small {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  line-height: 1.4;
+}
+
+/* 지갑 선택 드롭다운 */
+.add-account-modal .form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='%23666' d='M6 9L2 5h8z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  padding-right: 40px;
+}
+
+.add-account-modal .form-group select option {
+  padding: 8px 12px;
+  color: var(--gray-700);
+}
+
+/* 계정 인덱스 입력 */
+.add-account-modal .form-group input[type="number"] {
+  font-family: var(--font-mono);
+  text-align: center;
+}
+
+.add-account-modal .form-group input[type="number"]::-webkit-outer-spin-button,
+.add-account-modal .form-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.add-account-modal .form-group input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* 계정 정보 안내 */
+.account-info {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  border: 1px solid #bbdefb;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.account-info h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.account-info ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style-type: none;
+}
+
+.account-info li {
+  position: relative;
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin-bottom: 8px;
+  padding-left: 0;
+}
+
+.account-info li:before {
+  content: "•";
+  color: var(--primary-color);
+  font-weight: bold;
+  position: absolute;
+  left: -15px;
+  top: 0;
+}
+
+.account-info li:last-child {
+  margin-bottom: 0;
+}
+
+/* 모달 액션 버튼 커스터마이징 */
+.add-account-modal .modal-actions .primary-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.add-account-modal .modal-actions .primary-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.add-account-modal .modal-actions .primary-btn:disabled {
+  background: var(--gray-300);
+  color: var(--gray-500);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.add-account-modal .modal-actions .cancel-btn {
+  background: white;
+  border: 2px solid var(--gray-300);
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.add-account-modal .modal-actions .cancel-btn:hover {
+  background: var(--gray-50);
+  border-color: var(--gray-400);
+  color: var(--gray-700);
+}
+
+/* 로딩 상태 */
+.add-account-modal .loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  color: var(--gray-600);
+}
+
+.add-account-modal .loading-state .spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--gray-300);
+  border-top: 2px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* 성공/에러 메시지 AddAccount 전용 */
+.add-account-modal .success-message,
+.add-account-modal .error-message {
+  margin: 0 24px 16px;
+  font-size: 0.9rem;
+}
+
+.add-account-modal .success-message {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  border-left-color: #28a745;
+}
+
+.add-account-modal .error-message {
+  background: linear-gradient(135deg, #f8d7da 0%, #f1b0b7 100%);
+  border-left-color: #dc3545;
+}
+
+/* 반응형 디자인 - 그룹화 */
+@media (max-width: 768px) {
+  .wallet-group-header {
+    margin: 15px 0 8px 0;
+    padding: 10px 12px;
+  }
+  
+  .group-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .group-label {
+    font-size: 0.85rem;
+  }
+  
+  .group-mnemonic {
+    font-size: 0.75rem;
+    padding: 3px 6px;
+  }
+  
+  .wallet-card.in-group {
+    margin-left: 12px;
+  }
+  
+  .account-index-badge {
+    font-size: 0.65rem;
+    padding: 2px 5px;
+    margin-right: 6px;
+  }
+  
+  .wallet-group-divider {
+    height: 15px;
+    margin: 10px 0;
+  }
+  
+  .wallet-group-divider::after {
+    width: 40px;
+    height: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wallet-group-header {
+    margin: 12px 0 6px 0;
+    padding: 8px 10px;
+  }
+  
+  .group-label {
+    font-size: 0.8rem;
+  }
+  
+  .wallet-card.in-group {
+    margin-left: 8px;
+    border-left-width: 2px;
+  }
+  
+  .account-index-badge {
+    font-size: 0.6rem;
+    padding: 2px 4px;
+    min-width: 20px;
+  }
+  
+  .add-account-modal {
+    max-width: calc(100vw - 20px);
+    margin: 10px;
+  }
+  
+  .add-account-modal .form-group select,
+  .add-account-modal .form-group input {
+    padding: 14px 16px;
+    font-size: 16px; /* iOS 줌 방지 */
+  }
+  
+  .account-info {
+    padding: 16px;
+  }
+  
+  .account-info h4 {
+    font-size: 0.95rem;
+  }
+  
+  .account-info li {
+    font-size: 0.8rem;
+  }
+  
+  .no-mnemonic-wallets {
+    padding: 30px 16px;
+  }
+  
+  .no-mnemonic-wallets h4 {
+    font-size: 1.1rem;
+  }
+  
+  .no-mnemonic-wallets p {
+    font-size: 0.9rem;
+  }
+  
+  .add-account-modal .modal-header {
+    padding: 16px 16px 0;
+  }
+  
+  .add-account-modal .modal-body {
+    padding: 0 16px;
+  }
+  
+  .add-account-modal .modal-actions {
+    padding: 16px;
+    flex-direction: column;
+  }
+  
+  .add-account-modal .modal-actions .primary-btn,
+  .add-account-modal .modal-actions .cancel-btn {
+    padding: 14px 20px;
+  }
+  
+  .account-info ul {
+    padding-left: 16px;
+  }
+  
+  .account-info li:before {
+    left: -12px;
+  }
+}
+
+/* 다크 모드 지원 (선택사항) */
+@media (prefers-color-scheme: dark) {
+  .wallet-group-header {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    border-color: #4a5568;
+  }
+  
+  .group-label {
+    color: #f1f5f9;
+  }
+  
+  .group-mnemonic {
+    background: #1f2937;
+    border-color: #374151;
+    color: #9ca3af;
+  }
+  
+  .wallet-card.in-group {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1f2937 100%);
+  }
+  
+  .account-index-badge {
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+  }
+  
+  .account-info {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+    border-color: #3b82f6;
+  }
+  
+  .account-info h4 {
+    color: #f1f5f9;
+  }
+  
+  .account-info li {
+    color: #cbd5e1;
+  }
+  
+  .no-mnemonic-wallets {
+    color: #cbd5e1;
+  }
+  
+  .no-mnemonic-wallets h4 {
+    color: #f1f5f9;
+  }
+  
+  .add-account-modal .form-group select,
+  .add-account-modal .form-group input {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f9fafb;
+  }
+  
+  .add-account-modal .form-group select:focus,
+  .add-account-modal .form-group input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+}: 520px;
+  width: 100%;
+}
+
+.add-account-modal .modal-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--gray-800);
+}
+
+/* 니모닉 지갑이 없을 때 */
+.no-mnemonic-wallets {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--gray-600);
+}
+
+.no-mnemonic-wallets svg {
+  color: var(--warning-color);
+  margin-bottom: 16px;
+}
+
+.no-mnemonic-wallets h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 12px;
+}
+
+.no-mnemonic-wallets p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--gray-600);
+  margin: 0;
+}
+
+/* 폼 그룹 - AddAccount 전용 */
+.add-account-modal .form-group {
+  margin-bottom: 24px;
+}
+
+.add-account-modal .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--gray-700);
+  font-size: 0.95rem;
+}
+
+.add-account-modal .form-group select,
+.add-account-modal .form-group input[type="number"],
+.add-account-modal .form-group input[type="text"] {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+  font-family: inherit;
+  background: white;
+}
+
+.add-account-modal .form-group select:focus,
+.add-account-modal .form-group input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.add-account-modal .form-group small {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  line-height: 1.4;
+}
+
+/* 지갑 선택 드롭다운 */
+.add-account-modal .form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='%23666' d='M6 9L2 5h8z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px;
+  padding-right: 40px;
+}
+
+.add-account-modal .form-group select option {
+  padding: 8px 12px;
+  color: var(--gray-700);
+}
+
+/* 계정 인덱스 입력 */
+.add-account-modal .form-group input[type="number"] {
+  font-family: var(--font-mono);
+  text-align: center;
+}
+
+.add-account-modal .form-group input[type="number"]::-webkit-outer-spin-button,
+.add-account-modal .form-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.add-account-modal .form-group input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* 계정 정보 안내 */
+.account-info {
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  border: 1px solid #bbdefb;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.account-info h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gray-800);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.account-info ul {
+  margin: 0;
+  padding-left: 20px;
+  list-style-type: none;
+}
+
+.account-info li {
+  position: relative;
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  line-height: 1.6;
+  margin-bottom: 8px;
+  padding-left: 0;
+}
+
+.account-info li:before {
+  content: "•";
+  color: var(--primary-color);
+  font-weight: bold;
+  position: absolute;
+  left: -15px;
+  top: 0;
+}
+
+.account-info li:last-child {
+  margin-bottom: 0;
+}
+
+
+
+
+/* 모달 액션 버튼 커스터마이징 */
+.add-account-modal .modal-actions .primary-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.add-account-modal .modal-actions .primary-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+}
+
+.add-account-modal .modal-actions .primary-btn:disabled {
+  background: var(--gray-300);
+  color: var(--gray-500);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.add-account-modal .modal-actions .cancel-btn {
+  background: white;
+  border: 2px solid var(--gray-300);
+  color: var(--gray-600);
+  font-weight: 500;
+}
+
+.add-account-modal .modal-actions .cancel-btn:hover {
+  background: var(--gray-50);
+  border-color: var(--gray-400);
+  color: var(--gray-700);
+}
+
+/* 로딩 상태 */
+.add-account-modal .loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  color: var(--gray-600);
+}
+
+.add-account-modal .loading-state .spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--gray-300);
+  border-top: 2px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* 성공/에러 메시지 AddAccount 전용 */
+.add-account-modal .success-message,
+.add-account-modal .error-message {
+  margin: 0 24px 16px;
+  font-size: 0.9rem;
+}
+
+.add-account-modal .success-message {
+  background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+  border-left-color: #28a745;
+}
+
+.add-account-modal .error-message {
+  background: linear-gradient(135deg, #f8d7da 0%, #f1b0b7 100%);
+  border-left-color: #dc3545;
+}
+
+/* 반응형 디자인 - AddAccount */
+@media (max-width: 768px) {
+  .add-account-modal {
+    max-width: calc(100vw - 20px);
+    margin: 10px;
+  }
+  
+  .add-account-modal .form-group select,
+  .add-account-modal .form-group input {
+    padding: 14px 16px;
+    font-size: 16px; /* iOS 줌 방지 */
+  }
+  
+  .account-info {
+    padding: 16px;
+  }
+  
+  .account-info h4 {
+    font-size: 0.95rem;
+  }
+  
+  .account-info li {
+    font-size: 0.8rem;
+  }
+  
+  .no-mnemonic-wallets {
+    padding: 30px 16px;
+  }
+  
+  .no-mnemonic-wallets h4 {
+    font-size: 1.1rem;
+  }
+  
+  .no-mnemonic-wallets p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .add-account-modal .modal-header {
+    padding: 16px 16px 0;
+  }
+  
+  .add-account-modal .modal-body {
+    padding: 0 16px;
+  }
+  
+  .add-account-modal .modal-actions {
+    padding: 16px;
+    flex-direction: column;
+  }
+  
+  .add-account-modal .modal-actions .primary-btn,
+  .add-account-modal .modal-actions .cancel-btn {
+    padding: 14px 20px;
+  }
+  
+  .account-info ul {
+    padding-left: 16px;
+  }
+  
+  .account-info li:before {
+    left: -12px;
+  }
+}
+
+/* 다크 모드 지원 (선택사항) */
+@media (prefers-color-scheme: dark) {
+  .account-info {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+    border-color: #3b82f6;
+  }
+  
+  .account-info h4 {
+    color: #f1f5f9;
+  }
+  
+  .account-info li {
+    color: #cbd5e1;
+  }
+  
+  .no-mnemonic-wallets {
+    color: #cbd5e1;
+  }
+  
+  .no-mnemonic-wallets h4 {
+    color: #f1f5f9;
+  }
+  
+  .add-account-modal .form-group select,
+  .add-account-modal .form-group input {
+    background: #1f2937;
+    border-color: #374151;
+    color: #f9fafb;
+  }
+  
+  .add-account-modal .form-group select:focus,
+  .add-account-modal .form-group input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+}

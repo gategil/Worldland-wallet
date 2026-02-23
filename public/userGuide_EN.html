@@ -1,0 +1,170 @@
+# WorldLand Wallet User Guide
+
+## Table of Contents
+1. [Getting Started](#getting-started)
+2. [Wallet Creation and Setup](#wallet-creation-and-setup)
+3. [Basic Functions](#basic-functions)
+4. [Token Management](#token-management)
+5. [Security Settings](#security-settings)
+6. [Multi-Wallet Management](#multi-wallet-management)
+7. [Troubleshooting](#troubleshooting)
+
+---
+
+## Getting Started
+
+WorldLand Wallet is a security-enhanced web wallet specifically developed for the WorldLand blockchain (WLC). This wallet supports both WorldLand mainnet and testnet, providing multi-wallet management capabilities. It automatically discovers and manages ERC-20 tokens while offering high security through encrypted local storage. The wallet supports 8 languages including English and Korean, and provides seamless mobile experience through Progressive Web App (PWA) functionality.
+
+---
+
+## Wallet Creation and Setup
+
+### Creating a New Wallet
+
+When using WorldLand Wallet for the first time, you need to create a new wallet. After accessing the wallet website through your web browser, select the "Create New Wallet" tab.
+
+Setting up a secure password is a crucial step in the process. You must use a strong password with at least 8 characters, and it's recommended to combine uppercase letters, lowercase letters, numbers, and special characters. This password is used to encrypt your wallet data, so you must ensure you never forget it.
+
+After setting your password, you need to agree to the Terms of Service and Privacy Policy. Once all steps are completed, your wallet address and private key will be automatically generated, allowing you to perform transactions on the WorldLand blockchain.
+
+### Importing an Existing Wallet
+
+If you already have a WorldLand wallet, you can import your existing wallet for use. There are two methods for importing a wallet.
+
+When importing using a private key, select the "Import Wallet" tab and then choose the "Private Key" method. Enter your existing private key accurately and set a new password to complete the import process.
+
+For importing using a mnemonic phrase, select the "Mnemonic Phrase" method and enter the 12-word recovery phrase in the correct order. Similarly, set a new password to complete the wallet import.
+
+---
+
+## Basic Functions
+
+### Unlocking the Wallet
+
+To use WorldLand Wallet, you must first unlock the wallet. Enter the password you set when creating or importing the wallet into the input field and click the "Unlock Wallet" button. If the password is correct, you will be able to access the main screen.
+
+### Sending WLC
+
+To send WLC to another address, select the "Send" button from the main screen. On the send screen, you need to input several pieces of information. The recipient address must be in the correct format starting with 0x and containing 40 characters, and the send amount must be within your current balance.
+
+Gas price affects transaction processing speed, and you can choose from slow, standard, or fast options. If you want faster processing, select a higher gas price, but keep in mind that this will result in higher fees.
+
+After entering all information, review the transaction details once more and proceed with final approval. When the transaction is successfully sent, a transaction hash will be displayed, which you can use to check the transaction status on the blockchain explorer.
+
+### Receiving WLC
+
+To receive WLC from others, select the "Receive" button. On the receive screen, your wallet address is displayed in both QR code and text format. You can show the QR code for others to scan, or use the address copy function to share it as text.
+
+You can also create payment requests if needed. You can generate QR codes that include specific amounts or payment purposes to help others send the exact amount.
+
+### Checking Transaction History
+
+To view all transaction history for your wallet, select the "History" button. The transaction history screen shows both sent and received transactions, providing various filtering options.
+
+You can filter by all transactions, sent transactions, or received transactions, and sort by newest, oldest, or amount. If you want to view transactions for a specific token, you can filter by selecting that token.
+
+---
+
+## Token Management
+
+### Automatic Token Discovery
+
+One of the most useful features of WorldLand Wallet is its automatic token discovery capability. It automatically searches for ERC-20 tokens held in your wallet address and adds them to the list. This feature runs automatically when you unlock your wallet and updates every 5 minutes.
+
+Users can also manually click the refresh button to immediately execute a token scan. This allows you to quickly check newly received tokens or tokens whose balances have changed due to recent transactions.
+
+### Manual Token Addition
+
+For tokens that are not automatically discovered or newly launched tokens, you can add them manually. Open the asset selection dropdown, click the "+" button, and enter the token's contract address. When you enter a valid address, information such as the token's name, symbol, and decimal places will be automatically retrieved and added to your wallet.
+
+You can also use the token browser feature to search for and add popular tokens on the WorldLand network. The token browser provides a list of popular tokens with high holder counts, and you can also search for specific tokens using the search function.
+
+### Token Removal
+
+You can remove tokens that you no longer want to manage from the list. Click the X button next to the token in the token list and confirm the deletion to remove it from your wallet display. However, this only removes it from the wallet screen; the actual tokens remain preserved on the blockchain and can be re-added at any time.
+
+---
+
+## Security Settings
+
+### Language Settings
+
+WorldLand Wallet supports multiple languages. You can find language setting options by clicking the settings button in the upper right corner, and you can choose from 8 languages including English, Korean, Chinese, and Japanese. When you change the language, the entire interface immediately switches to your selected language.
+
+### Network Settings
+
+WorldLand Wallet supports both mainnet and testnet. The mainnet uses chain ID 103 and is the network where actual transactions take place. The testnet uses chain ID 10395 and is used for development or testing purposes.
+
+To change networks, select network settings from the settings menu and choose your desired network. When changing networks, you can also view the RPC URL and blockchain explorer information.
+
+### Auto-Lock Settings
+
+You can set up an auto-lock feature to enhance security. When you enable auto-lock in the security settings menu, the wallet will automatically switch to locked state when not used for a specified period. You can set the lock time from 1 minute to 1 hour, adjusting it appropriately based on your usage environment.
+
+### Private Key and Mnemonic Backup
+
+To maintain complete control of your wallet, you must safely back up your private key and mnemonic phrase. In the current wallet information section of the settings menu, you can select "View Private Key" or "View Mnemonic Phrase" to access this information.
+
+This information should never be shared with others and should not be stored online. Instead, it should be physically stored in a safe offline location. If your private key or mnemonic phrase is compromised, you could lose all assets in your wallet, so extreme caution is required.
+
+---
+
+## Multi-Wallet Management
+
+### Checking Wallet List
+
+WorldLand Wallet allows you to manage multiple wallets within a single application. Click the wallet icon at the top to view a list of all currently created wallets. Each wallet displays the user-set alias, wallet address, and current balance information.
+
+### Adding New Wallets
+
+You can create additional wallets or import existing ones beyond your current wallet. Click the "+" button on the wallet list screen to see new wallet addition options. You can either generate a completely new wallet or import an existing wallet using a private key or mnemonic phrase. When adding a wallet, it's recommended to set a meaningful alias for easy identification.
+
+### Wallet Switching
+
+When you have multiple wallets, you can switch between them as needed. Click on the wallet you want to use from the wallet list, and it will automatically switch to that wallet, displaying the selected wallet's balance and token information on the main screen.
+
+### Wallet Management Features
+
+Various management features are provided for each wallet. You can change a wallet's alias at any time using the edit button, and you can delete wallets that are no longer in use. However, wallet deletion is irreversible, so it should only be performed when you have separately backed up the private key or mnemonic phrase.
+
+A feature to export all wallet information as a JSON file is also provided. This allows you to import the same wallets on other devices and can also be used for backup purposes.
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+The most frequently occurring problem when using the wallet is being unable to unlock it. If you enter your password but still get an "incorrect password" error, first try re-entering your password accurately. If this doesn't resolve the issue, you can try clearing your browser cache or attempting access from a different browser.
+
+Sometimes balances don't display properly. If WLC or token balances show as 0 or appear different from reality, you can click the refresh button to load the latest information. You should also check your network connection status and ensure the correct network is selected.
+
+Transaction sending failures can have multiple causes. The most common cause is insufficient WLC balance including gas fees. You should also verify that the recipient address format is correct and try again with a higher gas price.
+
+When tokens are not automatically added, you can execute a manual refresh or manually add tokens by directly entering their addresses. You should also verify that your network settings are correct.
+
+### Security Precautions
+
+There are certain actions you should never take for wallet security. You should never share private keys or mnemonic phrases online or send them through messengers or email. Avoid clicking suspicious links or responding to token approval requests from unknown sources. It's unsafe to use your wallet on public computers or public WiFi networks.
+
+Conversely, there are recommended security practices. You should regularly create wallet backups and use strong passwords. Enable the auto-lock feature to prevent unauthorized access, and always access your wallet only from official sites.
+
+---
+
+## Customer Support
+
+### Support and Assistance
+
+If you encounter problems while using WorldLand Wallet or have questions, you can get help through various channels. You can find related information on the official website (https://worldland.foundation), and you can directly check transaction status on the blockchain explorer (https://scan-testnet.worldland.foundation). For technical issues, please refer to the technical documentation in the developer portal.
+
+### Emergency Response
+
+If you lose your wallet or become unable to access it, you can recover it using your backed-up private key or mnemonic phrase. Running the wallet import function on a new device or browser will completely restore your existing wallet. However, if you don't have backups of your private key or mnemonic phrase, wallet recovery is impossible, so it's important to prepare safe backups in advance.
+
+WorldLand Wallet has been developed with user asset security and convenience as top priorities. We hope you use your wallet safely and efficiently by referring to this guide, and we will continue to provide better services through ongoing updates.
+
+---
+
+*Last updated: January 2025*
+
+**Thank you for using WorldLand Wallet! We wish you a safe and enjoyable blockchain experience.**

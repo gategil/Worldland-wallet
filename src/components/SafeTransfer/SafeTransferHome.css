@@ -1,0 +1,291 @@
+/* src/components/SafeTransfer/SafeTransferHome.css */
+
+.safetransfer-home-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.safetransfer-home-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.safetransfer-home-banner {
+  background: linear-gradient(135deg, rgba(39, 218, 29, 0.1) 0%, rgba(56, 27, 220, 0.1) 100%);
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  border: 2px solid rgba(39, 218, 29, 0.2);
+}
+
+.safetransfer-home-banner h2 {
+  margin: 0 0 12px 0;
+  font-size: 28px;
+  color: #1f2937;
+}
+
+.safetransfer-home-banner p {
+  margin: 0;
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.safetransfer-home-description {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.safetransfer-home-description h3 {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.safetransfer-home-description > p {
+  margin: 0 0 20px 0;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.feature-icon {
+  font-size: 20px;
+  min-width: 24px;
+}
+
+.feature-item span:last-child {
+  color: #374151;
+  font-size: 14px;
+}
+
+.safetransfer-container-card {
+  background: linear-gradient(135deg, #27da1d 0%, #381bdc 100%);
+  border-radius: 16px;
+  padding: 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(39, 218, 29, 0.3);
+}
+
+.safetransfer-container-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(39, 218, 29, 0.4);
+}
+
+.safetransfer-container-card .card-content {
+  flex: 1;
+}
+
+.safetransfer-container-card h3 {
+  margin: 0 0 8px 0;
+  color: white;
+  font-size: 24px;
+}
+
+.safetransfer-container-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+}
+
+.safetransfer-container-card .card-arrow {
+  font-size: 32px;
+  color: white;
+  font-weight: bold;
+}
+
+.safetransfer-home-info {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.safetransfer-home-info h4 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  color: #1f2937;
+}
+
+.safetransfer-home-info ol {
+  margin: 0;
+  padding-left: 20px;
+  color: #6b7280;
+  line-height: 1.8;
+}
+
+.safetransfer-home-info li {
+  margin-bottom: 8px;
+}
+
+/* 반응형 디자인 */
+/* 이미지 컨테이너 */
+.feature-image-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  padding: 16px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.feature-image {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 가이드 버튼 */
+.guide-button {
+  width: 100%;
+  margin-top: 16px;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #27da1d 0%, #381bdc 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(39, 218, 29, 0.3);
+}
+
+.guide-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(39, 218, 29, 0.4);
+}
+
+/* 모달 스타일 */
+.safetransfer-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.safetransfer-modal-content {
+  background: white;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.safetransfer-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.safetransfer-modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: #1f2937;
+}
+
+.safetransfer-modal-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  transition: color 0.2s;
+}
+
+.safetransfer-modal-close:hover {
+  color: #1f2937;
+}
+
+.safetransfer-modal-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.safetransfer-modal-footer {
+  padding: 16px 20px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  gap: 12px;
+}
+
+.safetransfer-modal-btn-primary {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #27da1d 0%, #381bdc 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.safetransfer-modal-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(39, 218, 29, 0.4);
+}
+
+@media (max-width: 768px) {
+  .safetransfer-home-banner {
+    padding: 24px 16px;
+  }
+
+  .safetransfer-home-banner h2 {
+    font-size: 24px;
+  }
+
+  .safetransfer-container-card {
+    padding: 24px 16px;
+  }
+
+  .safetransfer-container-card h3 {
+    font-size: 20px;
+  }
+
+  .feature-image {
+    max-width: 250px;
+  }
+
+  .safetransfer-modal-content {
+    width: 95%;
+  }
+}
