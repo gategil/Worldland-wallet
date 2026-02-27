@@ -73,48 +73,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ## 📄 License / 라이선스
 
-Copyright (c) 2026 WorldLand. All rights reserved.
+Copyright (c) 2026 Gye-Tae Gil, Ph. D. All rights reserved.
 
-This project is licensed under a **dual license** model:
+No part of this software may be reproduced, distributed, or used for
+commercial purposes without explicit permission from the copyright holder.
 
-### 1. Source Code — GNU General Public License v3.0 (GPL-3.0)
-
-The source code of this project is licensed under the [GNU General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.html).
-
-- ✅ You may **view, fork, and modify** the source code.
-- ✅ You may distribute modified versions **only under the same GPL-3.0 license**.
-- ✅ You **must disclose** the source code of any derivative works.
-- ⚠️ Any derivative work must also be released under GPL-3.0.
-- 📌 **Commercial use requires separate written permission** from the copyright holder.
-
-### 2. Documentation, Design & Assets — CC BY-NC-SA 4.0
-
-All non-code assets (documentation, UI designs, images, icons, etc.) are licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/).
-
-- ✅ You may **share and adapt** the materials for **non-commercial purposes only**.
-- ✅ You must give **appropriate credit** (attribution).
-- ✅ Derivative works must be distributed under the **same license**.
-- ❌ **Commercial use is strictly prohibited** without prior written consent.
-
-### ⚠️ Commercial Use Notice / 상업적 이용 안내
-
-> **English:**
-> This software and its associated assets are provided for **educational, research, and personal use only**. Any commercial use, including but not limited to selling, sublicensing, or incorporating this software into a commercial product or service, is **strictly prohibited** without obtaining a separate commercial license from the copyright holder.
->
-> For commercial licensing inquiries, please contact the project maintainer.
-
-> **한국어:**
-> 본 소프트웨어 및 관련 자산은 **교육, 연구, 개인 용도**로만 제공됩니다. 판매, 재라이선스, 상업적 제품 또는 서비스에 통합하는 것을 포함한 모든 상업적 이용은 저작권자의 별도 상업 라이선스 없이 **엄격히 금지**됩니다.
->
-> 상업적 라이선스 문의는 프로젝트 관리자에게 연락해 주세요.
-
-### 📋 Summary / 요약
-
-| Item | License | Commercial Use |
-|------|---------|---------------|
-| Source Code (소스코드) | GPL-3.0 | ❌ Requires separate permission (별도 허가 필요) |
-| Docs, Design & Assets (문서, 디자인, 자산) | CC BY-NC-SA 4.0 | ❌ Prohibited (금지) |
-
----
-
-> **Disclaimer:** This project is not affiliated with, endorsed by, or sponsored by any third party. All trademarks are the property of their respective owners.
+For inquiries, contact: gategil@kaist.ac.kr
